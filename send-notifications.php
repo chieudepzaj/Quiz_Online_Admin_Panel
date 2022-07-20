@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Send Notifications  | <?= ucwords($_SESSION['company_name']) ?> - Admin Panel </title>
+        <title>Gửi Thông Báo </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -29,7 +29,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Send Notifications to Users<small>To all or selected</small></h2>
+                                    <h2>Gửi Thông Báo Tới Người Dùng<small>Gửi cho tất cả hoặc một vài người dùng</small></h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -39,17 +39,17 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                 <input type="hidden" id="send_notifications" name="send_notifications" required="" value="1" aria-required="true">
                                                 <textarea id="selected_list" name="selected_list" style='display:none'></textarea>
                                                 <div class="form-group">
-                                                    <label for="users">Select Users</label>
+                                                    <label for="users">Chọn Người Dùng</label>
                                                     <select name='users' id='users' class='form-control' >
-                                                        <option value='all'>All</option>
-                                                        <option value='selected'>Selected only</option>
+                                                        <option value='all'>Tất cả</option>
+                                                        <option value='selected'>Một vài người dùng</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="type">Type</label>
+                                                    <label for="type">Loại Thông Báo</label>
                                                     <select name="type" id="type" class="form-control" required>
-                                                        <option value="default">Default</option>
-                                                        <option value="category">Main Category</option>
+                                                        <option value="default">Mặc định</option>
+                                                        <option value="category">Danh mục chính</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group" id="categories" style="display:none;">
@@ -59,24 +59,24 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                     $db->sql($sql);
                                                     $categories = $db->getResult();
                                                     ?>
-                                                    <label class="" for="maincat_id">Main Category</label>
+                                                    <label class="" for="maincat_id">Danh Mục Chính</label>
                                                     <select id="maincat_id" name="maincat_id" required class="form-control">
-                                                        <option value=''>Select Options</option>
+                                                        <option value=''>Lựa chọn danh mục</option>
                                                         <?php foreach ($categories as $category) { ?>
                                                             <option value='<?= $category['id'] ?>'><?= $category['category_name'] ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="" for="title">Title</label>
+                                                    <label class="" for="title">Tiêu Đề</label>
                                                     <input type="text" id="title" name="title" required="required" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="" for="message">Message</label>
+                                                    <label class="" for="message">Nội Dung</label>
                                                     <textarea id="message" name="message" required="required" class="form-control col-md-7 col-xs-12" ></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input name="include_image" id="include_image"  type="checkbox" > Include image
+                                                    <input name="include_image" id="include_image"  type="checkbox" > Đính kèm ảnh
                                                 </div>
                                                 <div class="form-group">
                                                     <input type='file' name="image" id="image" style='display:none;'> 
@@ -85,21 +85,21 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                 <div id="result"></div>
                                                 <div class="form-group">
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <button type="submit" id="submit_btn" class="btn btn-warning">Send Notification</button>
+                                                        <button type="submit" id="submit_btn" class="btn btn-warning">Gửi Thông Báo</button>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class='col-md-6 col-sm-12'>
-                                            <button type='button' id='get_selections' class='btn btn-primary'>Get Selected Users</button>
+                                            <button type='button' id='get_selections' class='btn btn-primary'>Thêm Người Dùng</button>
                                             <div class="row" id="toolbar">
                                                 <form id="report_form" method="post">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <select name="filter_status" id="filter_status" class="form-control">
-                                                                <option value="">All</option>
-                                                                <option value="1">Active</option>
-                                                                <option value="0">De-active</option>
+                                                                <option value="">Tất cả</option>
+                                                                <option value="1">Hoạt động</option>
+                                                                <option value="0">Khóa</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -129,9 +129,9 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                     <tr>
                                                         <th scope="col" data-field="state" data-checkbox="true"></th>
                                                         <th scope="col" data-field="id" data-sortable="true">ID</th>
-                                                        <th scope="col" data-field="name" data-sortable="true">Name</th>
+                                                        <th scope="col" data-field="name" data-sortable="true">Tên Người Dùng</th>
                                                         <th scope="col" data-field="email" data-sortable="true">Email</th>
-                                                        <th scope="col" data-field="status" data-sortable="false">Status</th>
+                                                        <th scope="col" data-field="status" data-sortable="false">Trạng Thái</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -140,7 +140,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
 
                                             <div class="row" id="toolbar-1">
                                                 <div class="col-md-3">
-                                                    <button class="btn btn-danger btn-sm" id="delete_multiple_notifications" title="Delete Selected Notifications"><em class='fa fa-trash'></em></button>
+                                                    <button class="btn btn-danger btn-sm" id="delete_multiple_notifications" title="Xóa Thông Báo Được Chọn"><em class='fa fa-trash'></em></button>
                                                 </div>
                                             </div>
                                             <table  aria-describedby="mydesc" class='table-striped' id='notification_list'
@@ -167,14 +167,14 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                     <tr>
                                                         <th scope="col" data-field="state" data-checkbox="true"></th>
                                                         <th scope="col" data-field="id" data-sortable="true">ID</th>
-                                                        <th scope="col" data-field="title" data-sortable="true">Title</th>
-                                                        <th scope="col" data-field="message" data-sortable="true">Message</th>
-                                                        <th scope="col" data-field="image" data-sortable="false">Image</th>
-                                                        <th scope="col" data-field="users" data-sortable="true" data-visible="false" >Users</th>
-                                                        <th scope="col" data-field="type" data-sortable="true">Type</th>
-                                                        <th scope="col" data-field="type_id" data-sortable="true">Main Category ID</th>
-                                                        <th scope="col" data-field="date_sent" data-sortable="true">Date Sent</th>
-                                                        <th scope="col" data-field="operate">Operate</th>
+                                                        <th scope="col" data-field="title" data-sortable="true">Tiêu Đề</th>
+                                                        <th scope="col" data-field="message" data-sortable="true">Nội Dung</th>
+                                                        <th scope="col" data-field="image" data-sortable="false">Ảnh</th>
+                                                        <th scope="col" data-field="users" data-sortable="true" data-visible="false" >Gửi Tới</th>
+                                                        <th scope="col" data-field="type" data-sortable="true">Loại Thông Báo</th>
+                                                        <th scope="col" data-field="type_id" data-sortable="true">ID Danh Mục</th>
+                                                        <th scope="col" data-field="date_sent" data-sortable="true">Ngày Gửi</th>
+                                                        <th scope="col" data-field="operate">Thao Tác</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -218,7 +218,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         </script>
         <script type="text/javascript">
             $(document).on('click', '.delete-notification', function () {
-                if (confirm('Are you sure? Want to delete notification?')) {
+                if (confirm('Bạn muốn xóa thông báo này không??')) {
                     id = $(this).data("id");
                     image = $(this).data("image");
                     $.ajax({
@@ -229,7 +229,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             if (result == 1) {
                                 $('#notification_list').bootstrapTable('refresh');
                             } else
-                                alert('Error! Category could not be deleted');
+                                alert('Lỗi! Thông báo này chưa được xóa.');
                         }
                     });
                 }
@@ -283,9 +283,9 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 });
                 ids = ids.slice(0, -1); // removes last comma character
                 if (ids == "") {
-                    alert("Please select some notifications to delete!");
+                    alert("Hãy chọn một số thông báo để xóa!");
                 } else {
-                    if (confirm("Are you sure you want to delete all selected notifications?")) {
+                    if (confirm("Bạn có muốn xóa tất cả các ngôn ngữ được chọn?")) {
                         $.ajax({
                             type: 'GET',
                             url: "db_operations.php",
@@ -295,9 +295,9 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             },
                             success: function (result) {
                                 if (result == 1) {
-                                    alert("Notifications deleted successfully");
+                                    alert("Thành công.");
                                 } else {
-                                    alert("Could not delete notifications. Try again!");
+                                    alert("Có lỗi xảy ra. Hãy thử lại!");
                                 }
                                 delete_button.html('<i class="fa fa-trash"></i>');
                                 table.bootstrapTable('refresh');
@@ -323,15 +323,15 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         url: $(this).attr('action'),
                         data: formData,
                         beforeSend: function () {
-                            $('#submit_btn').html('Please wait..');
+                            $('#submit_btn').html('Xin chờ..');
                         },
                         cache: false,
                         contentType: false,
                         processData: false,
                         success: function (result) {
                             $('#result').html(result);
-                            $('#result').show().delay(6000).fadeOut();
-                            $('#submit_btn').html('Submit');
+                            $('#result').show().delay(4000).fadeOut();
+                            $('#submit_btn').html('Gửi Thông Báo');
                             $('#notification_form')[0].reset();
                             $('#notification_list').bootstrapTable('refresh');
                         }
@@ -361,7 +361,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         final_selection.push(arr[i]['fcm_id']);
                     }
                     $('textarea#selected_list').val(final_selection);
-
+                    alert("Đã thêm người dùng được chọn.");
                 });
             });
         </script>

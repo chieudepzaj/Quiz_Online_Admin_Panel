@@ -1,6 +1,6 @@
         <footer>
             <div class="pull-right">
-                <?= ucwords($_SESSION['company_name']) ?> Administrator Panel by <a href="https://wrteam.in" target='_blank' rel="noopener noreferrer">&copy WRTeam</a>
+               HEDSPI 2017-2022 WITH LOVE &#10084 
             </div>
             <div class="clearfix"></div>
         </footer>

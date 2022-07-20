@@ -15,7 +15,7 @@ $type = '2';
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Create and Manage Learning Category | <?= ucwords($_SESSION['company_name']) ?> - Admin Panel </title>
+        <title>Tạo & Quản Lý Learning Zoom </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -30,7 +30,7 @@ $type = '2';
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Create Category</h2>
+                                    <h2>Tạo Chủ Đề</h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -48,9 +48,9 @@ $type = '2';
                                                             $db->sql($sql);
                                                             $languages = $db->getResult();
                                                             ?>
-                                                            <label for="language">Language</label>
+                                                            <label for="language">Ngôn Ngữ</label>
                                                             <select id="language_id" name="language_id" required class="form-control">
-                                                                <option value="">Select language</option>
+                                                                <option value="">Chọn Ngôn Ngữ</option>
                                                                 <?php foreach ($languages as $language) { ?>
                                                                     <option value='<?= $language['id'] ?>'><?= $language['language'] ?></option>
                                                                 <?php } ?>
@@ -60,11 +60,11 @@ $type = '2';
                                                 <?php } ?>
                                                 <div class="form-group row">
                                                     <div class="col-md-6 col-sm-12">
-                                                        <label for="name">Category Name</label>
+                                                        <label for="name">Tên Chủ Đề</label>
                                                         <input type="text" id="name" name="name" required class="form-control">
                                                     </div>
                                                     <div class="col-md-6 col-sm-12">
-                                                        <label for="image">Image</label>
+                                                        <label for="image">Ảnh</label>
                                                         <input type='file' name="image" id="image" class="form-control">
                                                     </div>
 
@@ -74,7 +74,7 @@ $type = '2';
                                                 <div id="result"></div>
                                                 <div class="form-group">
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <button type="submit" id="submit_btn" class="btn btn-warning">Add New</button>
+                                                        <button type="submit" id="submit_btn" class="btn btn-warning">Thêm Mới</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -83,18 +83,18 @@ $type = '2';
                                     </div>
                                     <div class="row">
                                         <div class='col-sm-12'>
-                                            <h2>Categories <small>View / Update / Delete</small></h2>
+                                            <h2>Chủ Đề <small>Xem / Cập nhật / Xoá</small></h2>
                                             <?php if ($fn->is_language_mode_enabled()) { ?>
                                                 <div class='col-md-4'>
                                                     <select id='filter_language' class='form-control' required>
-                                                        <option value="">Select language</option>
+                                                        <option value="">Chọn Ngôn Ngữ</option>
                                                         <?php foreach ($languages as $language) { ?>
                                                             <option value='<?= $language['id'] ?>'><?= $language['language'] ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
                                                 <div class='col-md-4'>
-                                                    <button class='btn btn-primary btn-block' id='filter_btn'>Filter Category</button>
+                                                    <button class='btn btn-primary btn-block' id='filter_btn'>Lọc</button>
                                                 </div>
                                             <?php } ?>
                                             <div class='col-md-12'><hr></div>
@@ -130,13 +130,12 @@ $type = '2';
                                                             <th scope="col" data-field="state" data-checkbox="true"></th>
                                                             <th scope="col" data-field="id" data-sortable="true">ID</th>
                                                             <?php if ($fn->is_language_mode_enabled()) { ?>
-                                                                <th scope="col" data-field="language_id" data-sortable="true" data-visible="false">Language ID</th>
-                                                                <th scope="col" data-field="language" data-sortable="true">Language</th>
+                                                                <th scope="col" data-field="language_id" data-sortable="true" data-visible="false">ID Ngôn Ngữ</th>
+                                                                <th scope="col" data-field="language" data-sortable="true">Ngôn Ngữ</th>
                                                             <?php } ?>
-                                                            <th scope="col" data-field="row_order" data-visible='false' data-sortable="true">Order</th>
-                                                            <th scope="col" data-field="category_name" data-sortable="true">Category Name</th>
-                                                            <th scope="col" data-field="image" data-sortable="false">Image</th>
-                                                            <th scope="col" data-field="operate" data-events="actionEvents">Operate</th>
+                                                            <th scope="col" data-field="category_name" data-sortable="true">Tên Chủ Đề</th>
+                                                            <th scope="col" data-field="image" data-sortable="false">Ảnh</th>
+                                                            <th scope="col" data-field="operate" data-events="actionEvents">Thao tác</th>
                                                         </tr>
                                                     </thead>
                                                 </table>
@@ -155,7 +154,7 @@ $type = '2';
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Edit Category</h4>
+                            <h4 class="modal-title" id="myModalLabel">Chỉnh Sửa Chủ Đề</h4>
                         </div>
                         <div class="modal-body">
                             <form id="update_form"  method="POST" action ="db_operations.php" data-parsley-validate class="form-horizontal form-label-left">
@@ -165,9 +164,9 @@ $type = '2';
                                 <input type='hidden' name="image_url" id="image_url" value=''/>
                                 <?php if ($fn->is_language_mode_enabled()) { ?>
                                     <div class="form-group">
-                                        <label class="" for="name">Language</label>
+                                        <label class="" for="name">Ngôn Ngữ</label>
                                         <select id="update_language_id" name="language_id" required class="form-control">
-                                            <option value="">Select language</option>
+                                            <option value="">Chọn Ngôn Ngữ</option>
                                             <?php foreach ($languages as $language) { ?>
                                                 <option value='<?= $language['id'] ?>'><?= $language['language'] ?></option>
                                             <?php } ?>
@@ -175,17 +174,17 @@ $type = '2';
                                     </div>
                                 <?php } ?>
                                 <div class="form-group">
-                                    <label for="name">Category Name</label>
+                                    <label for="name">Tên Chủ Đề</label>
                                     <input type="text" name="name" id="update_name" placeholder="Category Name" class='form-control' required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="image">Image <small>( Leave it blank for no change )</small></label>
+                                    <label for="image">Ảnh</label>
                                     <input type="file" name="image" id="update_image" class="form-control" aria-required="true">
                                 </div>
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                        <button type="submit" id="update_btn" class="btn btn-success">Update</button>
+                                        <button type="submit" id="update_btn" class="btn btn-success">Cập Nhật</button>
                                     </div>
                                 </div>
                             </form>
@@ -219,9 +218,9 @@ $type = '2';
                 ids = ids.slice(0, -1); // removes last comma character
 
                 if (ids == "") {
-                    alert("Please select some categories to delete!");
+                    alert("Chọn một số chủ đề để xóa!!");
                 } else {
-                    if (confirm("Are you sure you want to delete all selected categories?")) {
+                    if (confirm("Bạn có muốn xóa tất cả chủ đề được chọn?")) {
                         $.ajax({
                             type: 'GET',
                             url: "db_operations.php",
@@ -231,9 +230,9 @@ $type = '2';
                             },
                             success: function (result) {
                                 if (result == 1) {
-                                    alert("Categories deleted successfully");
+                                    alert("Xóa Thành Công.");
                                 } else {
-                                    alert("Could not delete Categories. Try again!");
+                                    alert("Không thể xóa. Hãy thử lại!");
                                 }
                                 delete_button.html('<i class="fa fa-trash"></i>');
                                 table.bootstrapTable('refresh');
@@ -277,21 +276,21 @@ $type = '2';
                         url: $(this).attr('action'),
                         data: formData,
                         beforeSend: function () {
-                            $('#update_btn').html('Please wait..');
+                            $('#update_btn').html('Xin chờ...');
                         },
                         cache: false,
                         contentType: false,
                         processData: false,
                         success: function (result) {
                             $('#update_result').html(result);
-                            $('#update_result').show().delay(3000).fadeOut();
-                            $('#update_btn').html('Update');
+                            $('#update_result').show().delay(2000).fadeOut();
+                            $('#update_btn').html('Cập Nhật');
                             $('#update_image').val('');
                             // $('#update_form')[0].reset();
                             $('#category_list').bootstrapTable('refresh');
                             setTimeout(function () {
                                 $('#editCategoryModal').modal('hide');
-                            }, 4000);
+                            }, 3000);
                         }
                     });
                 }
@@ -322,13 +321,13 @@ $type = '2';
                 e.preventDefault();
                 var formData = new FormData(this);
                 if ($("#category_form").validate().form()) {
-                    if (confirm('Are you sure? Want to create Category')) {
+                    if (confirm('Bạn có muốn tạo chủ đề mới không?')) {
                         $.ajax({
                             type: 'POST',
                             url: $(this).attr('action'),
                             data: formData,
                             beforeSend: function () {
-                                $('#submit_btn').html('Please wait..');
+                                $('#submit_btn').html('Xin chờ...');
                             },
                             cache: false,
                             contentType: false,
@@ -336,7 +335,7 @@ $type = '2';
                             success: function (result) {
                                 $('#result').html(result);
                                 $('#result').show().delay(4000).fadeOut();
-                                $('#submit_btn').html('Submit');
+                                $('#submit_btn').html('Thêm Mới');
                                 $('#category_form')[0].reset();
                                 $('#category_list').bootstrapTable('refresh');
                             }
@@ -347,7 +346,7 @@ $type = '2';
         </script>
         <script>
             $(document).on('click', '.delete-category', function () {
-                if (confirm('Are you sure? Want to delete category? All related all data will also be deleted')) {
+                if (confirm('Bạn muốn xóa chủ đề? Tất cả các dữ liệu liên quan cũng sẽ bị xóa.')) {
                     id = $(this).data("id");
                     image = $(this).data("image");
                     $.ajax({
@@ -358,7 +357,7 @@ $type = '2';
                             if (result == 1) {
                                 $('#category_list').bootstrapTable('refresh');
                             } else
-                                alert('Error! Category could not be deleted');
+                                alert('Lỗi!! Chưa thể xóa chủ đề.');
                         }
                     });
                 }

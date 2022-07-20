@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Notification Settings | FCM Server Key | <?= ucwords($_SESSION['company_name']) ?> Admin Panel  </title>
+        <title>Cài Đặt Thông Báo </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -29,7 +29,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Notification Settings <small>Update FCM Server Key here</small></h2>
+                                    <h2>Cài Đặt Thông Báo  <small>Cập nhật FCM Server Key</small></h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -63,7 +63,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                         <div class="ln_solid"></div>
                                         <div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                                <button type="submit" id="submit_btn" class="btn btn-success">Update FCM Server Key</button>
+                                                <button type="submit" id="submit_btn" class="btn btn-success">Cập Nhật</button>
                                             </div>
                                         </div>
                                     </form>

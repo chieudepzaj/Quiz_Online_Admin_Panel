@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Daily Leaderboard Details  | <?= ucwords($_SESSION['company_name']) ?> - Admin Panel </title>
+        <title>Bảng Xếp Hạng Theo Ngày </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -29,7 +29,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Daily Leaderboard Details <small>View day wise leaderboard</small></h2>
+                                    <h2>Bảng Xếp Hạng Theo Ngày <small>Xem chi tiết bảng xếp hạng theo ngày</small></h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -57,13 +57,13 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                         <thead>
                                             <tr>
                                                 <th scope="col" data-field="id" data-sortable="true">ID</th>
-                                                <th scope="col" data-field="user_id" data-sortable="true" data-visible="false">User ID</th>
-                                                <th scope="col" data-field="name" data-sortable="true">Name</th>
+                                                <th scope="col" data-field="user_id" data-sortable="true" data-visible="false">ID người dùng</th>
+                                                <th scope="col" data-field="name" data-sortable="true">Tên người dùng</th>
                                                 <th scope="col" data-field="email" data-sortable="true">Email</th>
-                                                <th scope="col" data-field="score" data-sortable="true">Score</th>
-                                                <th scope="col" data-field="user_rank" data-sortable="true">Rank</th>
-                                                <th scope="col" data-field="last_updated" data-sortable="true">Last Updated</th>
-                                                <th scope="col" data-field="date_created" data-sortable="true">Date Created</th>
+                                                <th scope="col" data-field="score" data-sortable="true">Điểm</th>
+                                                <th scope="col" data-field="user_rank" data-sortable="true">Bậc xếp hạng</th>
+                                                <th scope="col" data-field="last_updated" data-sortable="true">Cập nhật lần cuối</th>
+                                                <th scope="col" data-field="date_created" data-sortable="true">Ngày tạo</th>
                                             </tr>
                                         </thead>
                                     </table>

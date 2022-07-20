@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Create and Manage Languages | <?= ucwords($_SESSION['company_name']) ?> - Admin Panel </title>
+        <title>Ngôn Ngữ </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -29,7 +29,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Create Language</h2>
+                                    <h2>Tạo Ngôn Ngữ</h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -38,25 +38,26 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                             <form id="language_form" method="POST" action="db_operations.php" class="form-horizontal form-label-left" enctype="multipart/form-data">
                                                 <input type="hidden" id="add_language" name="add_language" required="" value="1" aria-required="true">
                                                 <div class="form-group">
-                                                    <label for="name">Language Name</label>
-                                                    <input type="text" id="name" name="name" required class="form-control col-md-7 col-xs-12">
+                                                    <label for="name">Tên Ngôn Ngữ</label>
+                                                    <input type="text" id="name" name="name" placeholder="Nhập Tên Ngôn Ngữ" required class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="ln_solid"></div>
                                                 <div id="result"></div>
                                                 <div class="form-group">
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <button type="submit" id="submit_btn" class="btn btn-warning">Add New</button>
+                                                        <button type="submit" id="submit_btn" class="btn btn-warning">Thêm Mới</button>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class='col-md-6 col-sm-12'>
 
-                                            <div id="toolbar">
+                                        <div id="toolbar">
                                                 <div class="col-md-3 col-sm-3">
-                                                    <button class="btn btn-danger btn-sm" id="delete_multiple_languages" title="Delete Selected Languages"><em class='fa fa-trash'></em></button>
+                                                    <button class="btn btn-danger btn-sm" id="delete_multiple_languages" title="Xóa Ngôn Ngữ Được Chọn"><em class='fa fa-trash'></em></button>
                                                 </div>                                                
                                             </div>
+                                    
 
                                             <table aria-describedby="mydesc" class='table-striped' id='language_list'
                                                    data-toggle="table"
@@ -81,9 +82,9 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                     <tr>
                                                         <th scope="col" data-field="state" data-checkbox="true"></th>
                                                         <th scope="col" data-field="id" data-sortable="true">ID</th>
-                                                        <th scope="col" data-field="language" data-sortable="true">Language Name</th>
-                                                        <th scope="col" data-field="status" data-sortable="true">Status</th>
-                                                        <th scope="col" data-field="operate" data-events="actionEvents">Operate</th>
+                                                        <th scope="col" data-field="language" data-sortable="true">Tên Ngôn Ngữ</th>
+                                                        <th scope="col" data-field="status" data-sortable="true">Trạng Thái</th>
+                                                        <th scope="col" data-field="operate" data-events="actionEvents">Thao Tác</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -102,25 +103,25 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Edit Language</h4>
+                            <h4 class="modal-title" id="myModalLabel">Chỉnh Sửa Ngôn Ngữ</h4>
                         </div>
                         <div class="modal-body">
                             <form id="update_form"  method="POST" action ="db_operations.php" data-parsley-validate class="form-horizontal form-label-left">
                                 <input type='hidden' name="update_language" id="update_language" value='1'/>
                                 <input type='hidden' name="language_id" id="language_id" value=''/>
                                 <div class="form-group">
-                                    <label>Language Name</label>
-                                    <input type="text" name="name" id="update_name" placeholder="Language Name" class='form-control' required>
+                                    <label>Tên Ngôn Ngữ</label>
+                                    <input type="text" name="name" id="update_name" placeholder="Tên Ngôn Ngữ" class='form-control' required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Trạng Thái</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div id="status" class="btn-group">
                                             <label class="btn btn-default">
-                                                <input type="radio" name="status" value="1"> Enabled
+                                                <input type="radio" name="status" value="1"> Active
                                             </label>
                                             <label class="btn btn-warning">
-                                                <input type="radio" name="status" value="0"> Disabled
+                                                <input type="radio" name="status" value="0"> Deactive
                                             </label>
                                         </div>
                                     </div>
@@ -128,7 +129,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <button type="submit" id="update_btn" class="btn btn-success">Update</button>
+                                        <button type="submit" id="update_btn" class="btn btn-success">Cập Nhật</button>
                                     </div>
                                 </div>
                             </form>
@@ -159,9 +160,9 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 });
                 ids = ids.slice(0, -1); // removes last comma character
                 if (ids == "") {
-                    alert("Please select some languages to delete!");
+                    alert("Hãy chọn một số ngôn ngữ để xóa!");
                 } else {
-                    if (confirm("Are you sure you want to delete all selected languages?")) {
+                    if (confirm("Bạn có muốn xóa tất cả các ngôn ngữ được chọn?")) {
                         $.ajax({
                             type: 'GET',
                             url: "db_operations.php",
@@ -171,10 +172,10 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             },
                             success: function (result) {
                                 if (result == 1) {
-                                    alert("Languages deleted successfully");
+                                    alert("Thành công.");
                                 } else {
 
-                                    alert("Could not delete languages. Try again!");
+                                    alert("Có lỗi xảy ra. Hãy thử lại!");
                                 }
                                 delete_button.html('<i class="fa fa-trash"></i>');
                                 table.bootstrapTable('refresh');
@@ -215,20 +216,20 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         url: $(this).attr('action'),
                         data: formData,
                         beforeSend: function () {
-                            $('#update_btn').html('Please wait..');
+                            $('#update_btn').html('Xin Chờ..');
                         },
                         cache: false,
                         contentType: false,
                         processData: false,
                         success: function (result) {
                             $('#update_result').html(result);
-                            $('#update_result').show().delay(3000).fadeOut();
-                            $('#update_btn').html('Update');
+                            $('#update_result').show().delay(1000).fadeOut();
+                            $('#update_btn').html('Cập Nhật');
                             $('#update_form')[0].reset();
                             $('#language_list').bootstrapTable('refresh');
                             setTimeout(function () {
                                 $('#editlanguageModal').modal('hide');
-                            }, 4000);
+                            }, 2000);
                         }
                     });
                 }
@@ -257,13 +258,13 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 e.preventDefault();
                 var formData = new FormData(this);
                 if ($("#language_form").validate().form()) {
-                    if (confirm('Are you sure? Want to create language')) {
+                    if (confirm('Bạn muốn tạo ngôn ngữ mới không?')) {
                         $.ajax({
                             type: 'POST',
                             url: $(this).attr('action'),
                             data: formData,
                             beforeSend: function () {
-                                $('#submit_btn').html('Please wait..');
+                                $('#submit_btn').html('Xin Chờ..');
                             },
                             cache: false,
                             contentType: false,
@@ -271,7 +272,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             success: function (result) {
                                 $('#result').html(result);
                                 $('#result').show().delay(6000).fadeOut();
-                                $('#submit_btn').html('Submit');
+                                $('#submit_btn').html('Thêm Mới');
                                 $('#language_form')[0].reset();
                                 $('#language_list').bootstrapTable('refresh');
                             }
@@ -282,7 +283,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         </script>
         <script>
             $(document).on('click', '.delete-language', function () {
-                if (confirm('Are you sure? Want to delete language?')) {
+                if (confirm('Bạn muốn xóa ngôn ngữ này không?')) {
                     var id = $(this).data("id");
                     $.ajax({
                         url: 'db_operations.php',
@@ -292,7 +293,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             if (result == 1) {
                                 $('#language_list').bootstrapTable('refresh');
                             } else
-                                alert('Error! language could not be deleted');
+                                alert('Lỗi! Ngôn ngữ này chưa được xóa.');
                         }
                     });
                 }

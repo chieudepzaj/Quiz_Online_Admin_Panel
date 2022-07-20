@@ -1,3 +1,3 @@
-category,subcategory,language_id,question_type,question,option 1 ,option 2,option 3,option 4,option 5,answer,level,note
-63,97,2,{2 if question_type is true false other wise 1},My question goes here?,option 1,option 2,option 3,option 4,{optional - leave this blank cell if not using option e},a,1,any note
-63,97,1,{2 if question_type is true/false other wise 1},My second question here?,true,false,{leave this blank cell if question_type is true/false},{leave this blank cell if question_type is true/false},{leave this blank cell if question_type is true/false},a,2,any note
+chu de chinh,chu de phu,id ngon ngu,loai cau hoi,cau hoi,phuong an 1,phuong an 2,phuong an 3,phuong an 4,phuong an 5,dap an,level,ghi chu
+a,b,2,"1 neu là cau hoi lua chon,2 là cau hoi dang true/false",nhap cau hoi o day,cau tra loi A,cau tra loi B,cau tra loi C,cau tra loi D,{cau tra loi E có th? b? qua},a,1,….
+a,b,1,"2 neu là cau hoi lua chon,2 là cau hoi dang true/false",nhap cau hoi o day,TRUE,FALSE,{bo qua neu là dang true/false},{bo qua neu là dang true/false},{bo qua neu là dang true/false},a,2,….

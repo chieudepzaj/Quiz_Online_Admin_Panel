@@ -18,7 +18,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin Login | Quiz</title>
+        <title>Admin Login </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="login">
@@ -29,15 +29,15 @@ if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
                 <div class="animate form login_form">
                     <section class="login_content">
                         <form method ="POST"  id ="login_form" action="check_login.php">
-                            <h1 class="text-center">LOGIN</h1>
+                            <h1 class="text-center">ĐĂNG NHẬP</h1>
                             <div>
-                                <input type="text"  id="username" name='username' class="form-control" placeholder="Username" />
+                                <input type="text"  id="username" name='username' class="form-control" placeholder="Tên người dùng" />
                             </div>
                             <div>
-                                <input type="password" id="password" name='password' class="form-control" placeholder="Password" />
+                                <input type="password" id="password" name='password' class="form-control" placeholder="Mật khẩu" />
                             </div>
                             <div class="row mt-20">
-                                <input type ="submit" id="login_button" class="btn btn-default text-center" value="Log in">
+                                <input type ="submit" id="login_button" class="btn btn-default text-center" value="Đăng nhập">
                             </div>
                             <div class="clearfix"></div>
                             <div style ="display:none;" id="result">
@@ -45,8 +45,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
                             <div class="separator">
                                 <div class="clearfix"></div>
                                 <br>
-                                <img src="images/logo-460x114.png" alt="QUIZ" width='300'>
-                                <p class="text-center"><br>© <?= date('Y') ?> WRTeam</p>
+                                <img src="images/logo-460x114.png" alt="QUIZ" width='300' >
+                                <p class="text-center"><br>© <?= date('Y') ?> HEDSPI 2017-2022 WITH LOVE &#10084 </p>
                             </div>
                         </form>
                     </section>
@@ -65,10 +65,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
                 },
                 messages: {
                     username: {
-                        required: "Please Enter username"
+                        required: "Bạn chưa nhập username"
                     },
                     password: {
-                        required: "Please Enter password",
+                        required: "Bạn chưa nhập mật khẩu",
 
                     },
                 }
@@ -80,7 +80,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
                     type: "POST",
                     data: $(this).serialize(),
                     beforeSend: function () {
-                        $('#login_button').html('Please Wait...');
+                        $('#login_button').html('Xin chờ...');
                     },
                     // data: dataString,
                     success: function (result) {
@@ -90,7 +90,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
                         {
                             $('#result').html(result);
                             $('#result').show();
-                            $('#login_button').html('Log in');
+                            $('#login_button').html('Đăng Nhập');
                         }
                     }
                 });

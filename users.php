@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Users Details | <?= ucwords($_SESSION['company_name']) ?> - Admin Panel </title>
+        <title>Thông tin người dùng </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -29,17 +29,11 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Users Details <small>View / Update / Delete</small></h2>
+                                    <h2>Danh sách người dùng <small>Xem / Sửa / Xóa</small></h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <div id="toolbar">
-                                        <select id='export_select' class="form-control" >
-                                            <option value="basic">Export This Page</option>
-                                            <!--<option value="all">Export All</option>-->
-                                            <option value="selected">Export Selected</option>
-                                        </select>
-                                    </div>
+                                   
                                     <table  aria-describedby="mydesc" class='table-striped' id='users_list'
                                             data-toggle="table"
                                             data-url="get-list.php?table=users"
@@ -64,19 +58,14 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                             <tr>
                                                 <th scope="col" data-field="state" data-checkbox="true"></th>
                                                 <th scope="col" data-field="id" data-sortable="true">ID</th>
-                                                <th scope="col" data-field="profile" data-sortable="false">Profile</th>
-                                                <th scope="col" data-field="name" data-sortable="true">Name</th>
+                                                <th scope="col" data-field="profile" data-sortable="false">Ảnh đại diện</th>
+                                                <th scope="col" data-field="name" data-sortable="true">Tên người dùng</th>
                                                 <th scope="col" data-field="email" data-sortable="true">Email</th>
-                                                <th scope="col" data-field="mobile" data-sortable="true">Mobile</th>
-                                                <th scope="col" data-field="type" data-sortable="false">Type</th>
-                                                <th scope="col" data-field="coins" data-sortable="true" >Coins</th>
-                                                <th scope="col" data-field="refer_code" data-sortable="true" data-visible="false">Refer Code</th>
-                                                <th scope="col" data-field="friends_code" data-sortable="true" data-visible="false">Friends Code</th>
-                                                <th scope="col" data-field="fcm_id" data-sortable="true" data-visible="false">FCM ID</th>
-                                                <th scope="col" data-field="ip_address" data-sortable="true" data-visible="false">IP Address</th>
-                                                <th scope="col" data-field="status" data-sortable="false">Status</th>
-                                                <th scope="col" data-field="date_registered" data-sortable="true">Register Date</th>
-                                                <th scope="col" data-field="operate" data-events="actionEvents">Operate</th>
+                                                <th scope="col" data-field="mobile" data-sortable="true">Số điện thoại</th>
+                                                <th scope="col" data-field="type" data-sortable="false">Loại đăng nhập</th>
+                                                <th scope="col" data-field="status" data-sortable="false">Trạng thái</th>
+                                                <th scope="col" data-field="date_registered" data-sortable="true">Ngày đăng kí</th>
+                                                <th scope="col" data-field="operate" data-events="actionEvents">Thao tác</th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -92,21 +81,21 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Update User Status</h4>
+                            <h4 class="modal-title" id="myModalLabel">Cập nhật trạng thái người dùng</h4>
                         </div>
                         <div class="modal-body">
                             <form id="update_form"  method="POST" action ="db_operations.php" data-parsley-validate class="form-horizontal form-label-left">
                                 <input type='hidden' name="user_id" id="user_id" value=''/>
                                 <input type='hidden' name="update_user" id="update_user" value='1'/>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Trạng thái</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div id="status" class="btn-group" >
                                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="status" value="0">  Deactive 
+                                                <input type="radio" name="status" value="1"> Active 
                                             </label>
                                             <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="status" value="1"> Active
+                                                <input type="radio" name="status" value="0"> Deactive
                                             </label>
                                         </div>
                                     </div>
@@ -114,7 +103,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                        <button type="submit" id="submit_btn" class="btn btn-success">Submit</button>
+                                        <button type="submit" id="submit_btn" class="btn btn-success">Cập nhật</button>
                                     </div>
                                 </div>
                             </form>
@@ -185,7 +174,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         url: $(this).attr('action'),
                         data: formData,
                         beforeSend: function () {
-                            $('#submit_btn').html('Please wait..');
+                            $('#submit_btn').html('Xin chờ..');
                         },
                         cache: false,
                         contentType: false,
@@ -193,11 +182,11 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         success: function (result) {
                             $('#result').html(result);
                             $('#result').show().delay(3000).fadeOut();
-                            $('#submit_btn').html('Submit');
+                            $('#submit_btn').html('Cập Nhật');
                             $('#users_list').bootstrapTable('refresh');
                             setTimeout(function () {
                                 $('#editUserModal').modal('hide');
-                            }, 4000);
+                            }, 3000);
                         }
                     });
                 }

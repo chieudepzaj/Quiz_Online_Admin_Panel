@@ -18,7 +18,7 @@ if (!isset($_GET['user_id']) || !is_numeric($_GET['user_id'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Monthly Leaderboard Details | <?= ucwords($_SESSION['company_name']) ?> - Admin Panel </title>
+        <title>Thống Kê Chi Tiết Người Dùng </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -47,30 +47,30 @@ if (!isset($_GET['user_id']) || !is_numeric($_GET['user_id'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Statistics Details for <?= $result[0]['name'] ? $result[0]['name'] : 0; ?></h2>
+                                    <h2>Thống Kê Chi Tiết Về Người Dùng "<?= $result[0]['name'] ? $result[0]['name'] : 0; ?>"</h2>
                                     <div class="clearfix"></div>
                                 </div>
 
                                 <?php if (!empty($result1)) { ?>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <h4>General Statistics</h4><hr>
+                                        <h4>Thông Số Cơ Bản</h4><hr>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Questions Answered: <?= $result1[0]['questions_answered'] ? $result1[0]['questions_answered'] : 0; ?></label>
-                                            <label class="control-label col-md-4">Correct Answers: <?= $result1[0]['correct_answers'] ? $result1[0]['correct_answers'] : 0; ?></label>
-                                            <label class="control-label col-md-4">Best Position: <?= $result1[0]['best_position'] ? $result1[0]['best_position'] : 0; ?></label>
+                                            <label class="control-label col-md-4">Số Câu Đã Trả Lời: <?= $result1[0]['questions_answered'] ? $result1[0]['questions_answered'] : 0; ?></label>
+                                            <label class="control-label col-md-4">Số Câu Đúng: <?= $result1[0]['correct_answers'] ? $result1[0]['correct_answers'] : 0; ?></label>
+                                            <label class="control-label col-md-4">Thứ Hạng Tốt Nhất: <?= $result1[0]['best_position'] ? $result1[0]['best_position'] : 0; ?></label>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Strong Category: <?= $result1[0]['strong_category'] ? $result1[0]['strong_category'] : 0; ?></label>
-                                            <label class="control-label col-md-4">Weak Category: <?= $result1[0]['weak_category'] ? $result1[0]['weak_category'] : 0; ?></label>
+                                            <label class="control-label col-md-4">Chủ Đề Mạnh Nhất: <?= $result1[0]['strong_category'] ? $result1[0]['strong_category'] : 0; ?></label>
+                                            <label class="control-label col-md-4">Chủ Đề Yếu Nhất: <?= $result1[0]['weak_category'] ? $result1[0]['weak_category'] : 0; ?></label>
                                         </div>
                                     </div>
                                 <?php } ?>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <hr><h4>Battle Statistics</h4><hr>
+                                    <hr><h4>Dữ Liệu Các Trận Thi Đấu</h4><hr>
                                     <div class="form-group">
-                                        <label class="control-label col-md-4">Victories: <?= $result[0]['Victories'] ? $result[0]['Victories'] : 0; ?></label>
-                                        <label class="control-label col-md-4">Drawn: <?= $result[0]['Drawn'] ? $result[0]['Drawn'] : 0; ?></label>
-                                        <label class="control-label col-md-4">Loose: <?= $result[0]['Loose'] ? $result[0]['Loose'] : 0; ?></label>
+                                        <label class="control-label col-md-4">Thắng: <?= $result[0]['Victories'] ? $result[0]['Victories'] : 0; ?></label>
+                                        <label class="control-label col-md-4">Hòa: <?= $result[0]['Drawn'] ? $result[0]['Drawn'] : 0; ?></label>
+                                        <label class="control-label col-md-4">Thua: <?= $result[0]['Loose'] ? $result[0]['Loose'] : 0; ?></label>
                                     </div>
                                 </div>
                                 <div class="x_content">                                   
@@ -98,9 +98,9 @@ if (!isset($_GET['user_id']) || !is_numeric($_GET['user_id'])) {
                                             <tr>
                                                 <th scope="col" data-field="state" data-checkbox="true"></th>
                                                 <th scope="col" data-field="id" data-sortable="true">ID</th>
-                                                <th scope="col" data-field="opponent_id" data-sortable="true" data-visible="false">Opponent ID</th>
-                                                <th scope="col" data-field="opponent_name">Opponent Name</th>
-                                                <th scope="col" data-field="mystatus">My Status</th>
+                                                <th scope="col" data-field="opponent_id" data-sortable="true" data-visible="false">ID Đối Thủ</th>
+                                                <th scope="col" data-field="opponent_name">Tên Đối Thủ</th>
+                                                <th scope="col" data-field="mystatus">Trạng Thái</th>
                                             </tr>
                                         </thead>
                                     </table>

@@ -1,26 +1,14 @@
 <?php
 
-/*
- * Credits - Github 
- * @Author Rory Standley <rorystandley@gmail.com>
- * @Version 1.0
- * @Package Database
- */
-define('DOMAIN_URL', 'http://yourdomain.com/');
-define('JWT_SECRET_KEY', 'set_your_strong_jwt_secret_key');
+define('DOMAIN_URL', 'http://192.168.1.143:8080/Quiz_Online/');
+define('JWT_SECRET_KEY', '12345678');
 
 class Database {
-    /*
-     * Create variables for credentials to MySQL database
-     * The variables have been declared as private. This
-     * means that they will only be available with the 
-     * Database class
-     */
-
+  
     private $db_host = "localhost";  // Change as required
-    private $db_user = "databaseuser";  // Change as required
-    private $db_pass = "databasepassword";  // Change as required 
-    private $db_name = "databasename"; // Change as required
+    private $db_user = "root";  // Change as required
+    private $db_pass = "";  // Change as required 
+    private $db_name = "quiztest"; // Change as required
 
     /*
      * Extra variables that are required by other function such as boolean con variable

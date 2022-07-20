@@ -1,10 +1,5 @@
 <?php
 
-/*
-  API v7.0.4
-  Quiz Online - WRTeam.in
-  WRTeam Developers
- */
 session_start();
 if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
     header("location:index.php");
@@ -114,7 +109,7 @@ function checkadmin($auth_username) {
 if (isset($_POST['get_subcategories_of_category']) && $_POST['get_subcategories_of_category'] != '') {
     $id = $_POST['category_id'];
     if (empty($id)) {
-        echo '<option value="">Select Sub Category</option>';
+        echo '<option value="">Chọn Danh Mục Con</option>';
         return false;
     }
     $sql = 'SELECT * FROM `subcategory` WHERE `maincat_id`=' . $id . ' ORDER BY row_order + 0 ASC';
@@ -132,7 +127,7 @@ if (isset($_POST['get_subcategories_of_category']) && $_POST['get_subcategories_
             }
         }
     } else {
-        $options = '<option value="">Select Sub Category</option>';
+        $options = '<option value="">Chọn Danh Mục Con</option>';
         foreach ($res as $option) {
             $options .= "<option value='" . $option['id'] . "'>" . $option['subcategory_name'] . "</option>";
         }
@@ -145,7 +140,7 @@ if (isset($_POST['get_categories_of_language']) && $_POST['get_categories_of_lan
     $id = $_POST['language_id'];
     $type = (isset($_POST['type'])) ? $_POST['type'] : 1;
     if (empty($id)) {
-        echo '<option value="">Select Category</option>';
+        echo '<option value="">Chọn Danh Mục</option>';
         return false;
     }
     $sql = 'SELECT * FROM `category` WHERE `language_id`=' . $id . ' AND `type`=' . $type . ' ORDER BY row_order + 0 ASC';
@@ -163,7 +158,7 @@ if (isset($_POST['get_categories_of_language']) && $_POST['get_categories_of_lan
             }
         }
     } else {
-        $options = '<option value="">Select Category</option>';
+        $options = '<option value="">Chọn Danh Mục </option>';
         foreach ($res as $option) {
             $options .= "<option value='" . $option['id'] . "'>" . $option['category_name'] . "</option>";
         }
@@ -225,7 +220,7 @@ if (isset($_POST['name']) && isset($_POST['add_category'])) {
         $extension = pathinfo($_FILES["image"]["name"])['extension'];
         if (!(in_array($extension, $allowedExts))) {
             $response['error'] = true;
-            $response['message'] = 'Image type is invalid';
+            $response['message'] = 'Ảnh không đúng định dạng';
             echo json_encode($response);
             return false;
         }
@@ -234,7 +229,7 @@ if (isset($_POST['name']) && isset($_POST['add_category'])) {
         $full_path = $target_path . "" . $filename;
         if (!move_uploaded_file($_FILES["image"]["tmp_name"], $full_path)) {
             $response['error'] = true;
-            $response['message'] = 'Image type is invalid';
+            $response['message'] = 'Ảnh không đúng định dạng';
             echo json_encode($response);
             return false;
         }
@@ -243,7 +238,7 @@ if (isset($_POST['name']) && isset($_POST['add_category'])) {
     $sql = "INSERT INTO `category` (`language_id`, `category_name`, `type`, `image`, `row_order`) VALUES ('" . $language_id . "','" . $name . "','" . $type . "','" . $filename . "','0')";
     $db->sql($sql);
 
-    echo '<label class="alert alert-success">Category created successfully!</label>';
+    echo '<label class="alert alert-success">Tạo danh mục thành công!</label>';
 }
 
 //2. update_category
@@ -264,14 +259,14 @@ if (isset($_POST['category_id']) && isset($_POST['update_category'])) {
         // common image file extensions
         $extension = pathinfo($_FILES["image"]["name"])['extension'];
         if (!(in_array($extension, $allowedExts))) {
-            echo '<p class="alert alert-danger">Image type is invalid</p>';
+            echo '<p class="alert alert-danger">Ảnh không đúng định dạng</p>';
             return false;
         }
         $target_path = 'images/category/';
         $filename = microtime(true) . '.' . strtolower($extension);
         $full_path = $target_path . "" . $filename;
         if (!move_uploaded_file($_FILES["image"]["tmp_name"], $full_path)) {
-            echo '<p class="alert alert-danger">Image type is invalid</p>';
+            echo '<p class="alert alert-danger">Ảnh không đúng định dạng</p>';
             return false;
         }
         if ($image_url != "images/logo-half.png" && file_exists($image_url)) {
@@ -300,7 +295,7 @@ if (isset($_POST['category_id']) && isset($_POST['update_category'])) {
         $db->sql($sql4);
     }
 
-    echo "<p class='alert alert-success'>Category updated successfully!</p>";
+    echo "<p class='alert alert-success'>Cập nhật danh mục thành công!</p>";
 }
 
 //3. delete_category
@@ -389,7 +384,7 @@ if (isset($_POST['name']) && isset($_POST['add_subcategory'])) {
         $extension = pathinfo($_FILES["image"]["name"])['extension'];
         if (!(in_array($extension, $allowedExts))) {
             $response['error'] = true;
-            $response['message'] = 'Image type is invalid';
+            $response['message'] = 'Ảnh không đúng định dạng';
             echo json_encode($response);
             return false;
         }
@@ -398,7 +393,7 @@ if (isset($_POST['name']) && isset($_POST['add_subcategory'])) {
         $full_path = $target_path . "" . $filename;
         if (!move_uploaded_file($_FILES["image"]["tmp_name"], $full_path)) {
             $response['error'] = true;
-            $response['message'] = 'Image type is invalid';
+            $response['message'] = 'Ảnh không đúng định dạng';
             echo json_encode($response);
             return false;
         }
@@ -407,7 +402,7 @@ if (isset($_POST['name']) && isset($_POST['add_subcategory'])) {
     $sql = "INSERT INTO `subcategory` (`language_id`,`maincat_id`,`subcategory_name`, `image`,`row_order`) VALUES ('" . $language_id . "','" . $maincat_id . "','" . $name . "','" . $filename . "','0')";
     $db->sql($sql);
 
-    echo '<label class="alert alert-success">Sub Category created successfully!</label>';
+    echo '<label class="alert alert-success">Tạo danh mục con thành công!</label>';
 }
 
 //5. update_subcategory
@@ -432,14 +427,14 @@ if (isset($_POST['subcategory_id']) && isset($_POST['update_subcategory'])) {
         // common image file extensions
         $extension = pathinfo($_FILES["image"]["name"])['extension'];
         if (!(in_array($extension, $allowedExts))) {
-            echo '<p class="alert alert-danger">Image type is invalid</p>';
+            echo '<p class="alert alert-danger">Ảnh không đúng định dạng</p>';
             return false;
         }
         $target_path = 'images/subcategory/';
         $filename = microtime(true) . '.' . strtolower($extension);
         $full_path = $target_path . "" . $filename;
         if (!move_uploaded_file($_FILES["image"]["tmp_name"], $full_path)) {
-            echo '<p class="alert alert-danger">Image type is invalid</p>';
+            echo '<p class="alert alert-danger">Ảnh không đúng định dạng</p>';
             return false;
         }
         if ($image_url != "images/logo-half.png" && file_exists($image_url)) {
@@ -470,7 +465,7 @@ if (isset($_POST['subcategory_id']) && isset($_POST['update_subcategory'])) {
     $sql3 .= " WHERE `subcategory` =" . $id;
     $db->sql($sql3);
 
-    echo "<p class='alert alert-success'>Sub category updated successfully!</p>";
+    echo "<p class='alert alert-success'>Cập nhật danh mục con thành công!</p>";
 }
 
 //6. delete_subcategory
@@ -546,7 +541,7 @@ if (isset($_POST['question']) && isset($_POST['add_question'])) {
         $extension = pathinfo($_FILES["image"]["name"])['extension'];
         if (!(in_array($extension, $allowedExts))) {
             $response['error'] = true;
-            $response['message'] = 'Image type is invalid';
+            $response['message'] = 'Ảnh không đúng định dạng';
             echo json_encode($response);
             return false;
         }
@@ -555,7 +550,7 @@ if (isset($_POST['question']) && isset($_POST['add_question'])) {
         $full_path = $target_path . "" . $filename;
         if (!move_uploaded_file($_FILES["image"]["tmp_name"], $full_path)) {
             $response['error'] = true;
-            $response['message'] = 'Image type is invalid';
+            $response['message'] = 'Ảnh không đúng định dạng';
             echo json_encode($response);
             return false;
         }
@@ -566,7 +561,7 @@ if (isset($_POST['question']) && isset($_POST['add_question'])) {
 
     $db->sql($sql);
     $res = $db->getResult();
-    echo '<label class="alert alert-success">Question created successfully!</label>';
+    echo '<label class="alert alert-success">Tạo câu hỏi thành công!</label>';
 }
 
 //9. update_question
@@ -584,7 +579,7 @@ if (isset($_POST['question_id']) && isset($_POST['update_question'])) {
         // common image file extensions
         $extension = pathinfo($_FILES["image"]["name"])['extension'];
         if (!(in_array($extension, $allowedExts))) {
-            echo '<p class="alert alert-danger">Image type is invalid</p>';
+            echo '<p class="alert alert-danger">Ảnh không đúng định dạng</p>';
             return false;
         }
         if (!is_dir('images/questions')) {
@@ -594,7 +589,7 @@ if (isset($_POST['question_id']) && isset($_POST['update_question'])) {
         $filename = microtime(true) . '.' . strtolower($extension);
         $full_path = $target_path . "" . $filename;
         if (!move_uploaded_file($_FILES["image"]["tmp_name"], $full_path)) {
-            echo '<p class="alert alert-danger">Image type is invalid</p>';
+            echo '<p class="alert alert-danger">Ảnh không đúng định dạng</p>';
             return false;
         }
         if (!empty($image_url) && file_exists($image_url)) {
@@ -626,7 +621,7 @@ if (isset($_POST['question_id']) && isset($_POST['update_question'])) {
     $sql .= " where `id`=" . $id;
     $db->sql($sql);
 
-    echo "<p class='alert alert-success'>Question updated successfully!</p>";
+    echo "<p class='alert alert-success'>Cập nhật câu hỏi thành công!</p>";
 }
 
 //10. delete_question
@@ -693,9 +688,7 @@ if (isset($_POST['title']) && isset($_POST['send_notifications'])) {
     } elseif ($users == 'selected') {
         $selected_list = $_POST['selected_list'];
         if (empty($selected_list)) {
-            $response['error'] = true;
-            $response['message'] = 'Please Select the users from the table';
-            echo json_encode($response);
+            echo "<label class='alert alert-danger'>Bạn chưa chọn người dùng từ danh sách.</label>";
             return false;
         }
         $fcm_ids = array();
@@ -721,7 +714,7 @@ if (isset($_POST['title']) && isset($_POST['send_notifications'])) {
         $extension = pathinfo($_FILES["image"]["name"])['extension'];
         if (!(in_array($extension, $allowedExts))) {
             $response['error'] = true;
-            $response['message'] = 'Image type is invalid';
+            $response['message'] = 'Ảnh không đúng định dạng';
             echo json_encode($response);
             return false;
         }
@@ -730,7 +723,7 @@ if (isset($_POST['title']) && isset($_POST['send_notifications'])) {
         $full_path = $target_path . "" . $filename;
         if (!move_uploaded_file($_FILES["image"]["tmp_name"], $full_path)) {
             $response['error'] = true;
-            $response['message'] = 'Image type is invalid';
+            $response['message'] = 'Ảnh không đúng định dạng';
             echo json_encode($response);
             return false;
         }
@@ -806,7 +799,7 @@ if (isset($_POST['title']) && isset($_POST['send_notifications'])) {
         $success += $result['success'];
         $failure += $result['failure'];
     }
-    echo '<p class="alert alert-success">Notification Sent Successfully</p>';
+    echo '<p class="alert alert-success">Gửi Thông Báo Thành Công.</p>';
 }
 
 // 12. delete_notification
@@ -835,12 +828,12 @@ if (isset($_POST['update_fcm_server_key'])) {
         $sql = "INSERT INTO tbl_fcm_key (fcm_key) VALUES ('" . $fcm_key . "')";
         $db->sql($sql);
         $res = $db->getResult();
-        echo "<p class='alert alert-success'>FCM Key Inserted Successfully!</p><br>";
+        echo "<p class='alert alert-success'>FCM Key được thêm thành công!</p><br>";
     } else {
         $sql = "Update `tbl_fcm_key` set `fcm_key`='" . $fcm_key . "' where `id`=" . $update_fcm_server_key_id;
         $db->sql($sql);
         $res = $db->getResult();
-        echo "<p class='alert alert-success'>FCM Key Updated Successfully!</p><br>";
+        echo "<p class='alert alert-success'>Cập nhật FCM Key thành công!</p><br>";
     }
 }
 
@@ -894,7 +887,7 @@ if (isset($_POST['import_questions']) && $_POST['import_questions'] == 1) {
                             $empty_value_found = true;
                         } else {
                             $empty_value_found = false;
-                            echo '<p class="text-danger">Please Check ' . $count . ' row</p>';
+                            echo '<p class="text-danger">Hãy kiểm tra lại dòng số  ' . $count . ' </p>';
                             break;
                         }
                     } else if ($emapData[3] == '2') {
@@ -902,7 +895,7 @@ if (isset($_POST['import_questions']) && $_POST['import_questions'] == 1) {
                             $empty_value_found = true;
                         } else {
                             $empty_value_found = false;
-                            echo '<p class="text-danger">Please Check ' . $count . ' row</p>';
+                            echo '<p class="text-danger">Hãy kiểm tra lại dòng số ' . $count . '</p>';
                             break;
                         }
                     } else {
@@ -941,12 +934,12 @@ if (isset($_POST['import_questions']) && $_POST['import_questions'] == 1) {
                 }
             }
             fclose($file);
-            echo "<p class='alert alert-success'>CSV file is successfully imported!</p>";
+            echo "<p class='alert alert-success'>Tệp CSV đã được nhập thành công !</p>";
         } else {
-            echo "<p class='alert alert-danger'>Please fill all the data in CSV file!</p>";
+            echo "<p class='alert alert-danger'>Hãy điền tất cả dữ liệu vào tệp CSV!</p>";
         }
     } else {
-        echo "<p class='alert alert-danger'>Invalid file format! Please upload data in CSV file!</p>";
+        echo "<p class='alert alert-danger'>Định dạng tệp không hợp lệ! Vui lòng tải lên dữ liệu trong tệp CSV!</p>";
     }
 }
 
@@ -998,7 +991,7 @@ if (isset($_POST['update_policy'])) {
 
     $db->sql($sql);
     $res = $db->getResult();
-    echo "<p class='alert alert-success'>Privacy policy updated Successfully!</p><br>";
+    echo "<p class='alert alert-success'>Chính sách bảo mật được cập nhật thành công!</p><br>";
 }
 
 // 19. update_terms()
@@ -1018,7 +1011,7 @@ if (isset($_POST['update_terms'])) {
     }
     $db->sql($sql);
     $res = $db->getResult();
-    echo "<p class='alert alert-success'>Terms and conditions updated Successfully!</p><br>";
+    echo "<p class='alert alert-success'>Điều khoản dịch vụ được cập nhật thành công!</p><br>";
 }
 
 // 20. update_user()
@@ -1032,7 +1025,7 @@ if (isset($_POST['user_id']) && isset($_POST['update_user'])) {
     $sql = "Update users set `status`='" . $status . "' where `id`=" . $id;
     $db->sql($sql);
     $res = $db->getResult();
-    echo "<p class='alert alert-success'>User Status updated!</p>";
+    echo "<p class='alert alert-success'>Cập nhật trạng thái người dùng thành công!</p>";
 }
 
 // 21. add_admin_form
@@ -1049,15 +1042,15 @@ if (isset($_POST["add_admin"]) && !empty($_POST["add_admin"]) && $_POST['add_adm
     $db->sql($sql);
     $res = $db->getResult();
     if ($res) {
-        echo "<p class='alert alert-warning'>$username is already exists.</p>";
+        echo "<p class='alert alert-warning'>$username đã tồn tại.</p>";
     } else {
         $data = array('auth_username' => $username, 'auth_pass' => $password, 'role' => $role, 'app_passcode' => '0', 'android_key' => '0', 'status' => '0');
         $db->insert('authenticate', $data);
         $res = $db->getResult();
         if ($res) {
-            echo "<p class='alert alert-success'>" . $username . " added as " . $role . "!</p>";
+            echo "<p class='alert alert-success'>" . $username . " được tạo với quyền " . $role . "!</p>";
         } else {
-            echo "<p class='alert alert-danger'>Admin registration is failed. try again.</p>";
+            echo "<p class='alert alert-danger'>Đăng kí Admin không thành công. Thử lại!.</p>";
         }
     }
 }
@@ -1076,9 +1069,9 @@ if (isset($_POST['update_admin']) && !empty($_POST['update_admin']) && $_POST['u
     $db->sql($sql);
     $res = $db->getResult();
     if ($res) {
-        echo "<p class='alert alert-danger'>$update_username is not updated.</p>";
+        echo "<p class='alert alert-danger'>$update_username chưa được cập nhật.</p>";
     } else {
-        echo "<p class='alert alert-success'>$update_username is successfully updated.</p>";
+        echo "<p class='alert alert-success'>$update_username cập nhật thành công.</p>";
     }
 }
 
@@ -1103,14 +1096,14 @@ if (isset($_POST['app_link']) && isset($_POST['system_configurations'])) {
     $date = $db->escapeString(date('Y-m-d'));
     if (!empty($_POST['system_configurations_id'])) {
         $_POST['system_timezone_gmt'] = preg_replace('/\s+/', '', $_POST['system_timezone_gmt']);
-        $_POST['system_timezone_gmt'] = ($_POST['system_timezone_gmt'] == '00:00' ) ? "+" . $_POST['system_timezone_gmt'] : $_POST['system_timezone_gmt'];
+        $_POST['system_timezone_gmt'] = ($_POST['system_timezone_gmt'] == '07:00' ) ? "+" . $_POST['system_timezone_gmt'] : $_POST['system_timezone_gmt'];
         $sql = "UPDATE settings SET message='" . json_encode($_POST, JSON_UNESCAPED_UNICODE) . "' WHERE type='system_configurations'";
     } else {
         $sql = "INSERT INTO settings (type,message,status) VALUES ('system_configurations','" . json_encode($_POST, JSON_UNESCAPED_UNICODE) . "','1')";
     }
     $db->sql($sql);
     $res = $db->getResult();
-    echo "<p class='alert alert-success'>Settings Saved!</p>";
+    echo "<p class='alert alert-success'>Lưu thay đổi thành công!</p>";
 }
 
 // 25. delete_multiple
@@ -1165,9 +1158,9 @@ if (isset($_POST['name']) && isset($_POST['add_language'])) {
     if (empty($language)) {
         $sql = "INSERT INTO `languages` (`language`,`status`) VALUES ('" . $name . "','1')";
         $db->sql($sql);
-        echo '<label class="alert alert-success">Language created successfully!</label>';
+        echo '<label class="alert alert-success">Ngôn ngữ đã được tạo thành công!</label>';
     } else {
-        echo '<label class="alert alert-danger">Language is already created</label>';
+        echo '<label class="alert alert-danger">Ngôn ngữ đã tồn tại!!!</label>';
     }
 }
 
@@ -1182,9 +1175,9 @@ if (isset($_POST['language_id']) && isset($_POST['update_language'])) {
     $status = $db->escapeString($_POST['status']);
     $sql = "UPDATE `languages` SET `language`='" . $name . "',`status`='" . $status . "' WHERE `id` = " . $language_id;
     if ($db->sql($sql)) {
-        echo "<p class='alert alert-success'>Language updated successfully!</p>";
+        echo "<p class='alert alert-success'>Ngôn ngữ đã được cập nhật thành công!</p>";
     } else {
-        echo "<p class='alert alert-danger'>Language not updated!</p>";
+        echo "<p class='alert alert-danger'>Ngôn ngữ chưa được cập nhật!</p>";
     }
 }
 
@@ -1222,7 +1215,7 @@ if (isset($_POST['update_about_us'])) {
 
     $db->sql($sql);
     $res = $db->getResult();
-    echo "<p class='alert alert-success'>About us updated successfully!</p><br>";
+    echo "<p class='alert alert-success'>Giới thiệu cập nhật thành công!</p><br>";
 }
 
 // 31. update_instructions()
@@ -1263,7 +1256,7 @@ if (isset($_POST['question_ids']) && isset($_POST['update_daily_quiz_order']) &&
         $sql1 = "INSERT INTO `daily_quiz` (`language_id`,`questions_id`,`date_published`) VALUES ('$language_id','$question_ids',STR_TO_DATE('$date_published', '%Y-%m-%d'))";
     }
     $db->sql($sql1);
-    echo "<p class='alert alert-success'> Saved </p>";
+    echo "<p class='alert alert-success'> Lưu Thành Công </p>";
 }
 
 // 34. add_contest()
@@ -1706,7 +1699,7 @@ if (isset($_POST['title']) && isset($_POST['add_learning'])) {
     $sql = "INSERT INTO `tbl_learning` ( `category`, `language_id`, `title`, `detail`, `status`) VALUES ('" . $category . "','" . $language_id . "','" . $title . "','" . $detail . "','0')";
     $db->sql($sql);
     $res = $db->getResult();
-    echo '<label class="alert alert-success">Learning created successfully!</label>';
+    echo '<label class="alert alert-success">Learning được tạo thành công!</label>';
 }
 
 // 47. update_question
@@ -1727,7 +1720,7 @@ if (isset($_POST['learning_id']) && isset($_POST['update_learning'])) {
     $sql .= " where `id`=" . $id;
     $db->sql($sql);
 
-    echo "<p class='alert alert-success'>Learning updated successfully!</p>";
+    echo "<p class='alert alert-success'>Learning cập nhật thành công!</p>";
 }
 
 // 48. update_learning_status
@@ -1743,16 +1736,16 @@ if (isset($_POST['learning_status_id']) && isset($_POST['update_learning_status'
         $db->sql($sql);
         $res = $db->getResult();
         if (empty($res)) {
-            echo "<p class='alert alert-danger'>No enought question for active Learning!</p>";
+            echo "<p class='alert alert-danger'>Không đủ số câu hỏi!</p>";
         } else {
             $sql = "Update `tbl_learning` set `status`='" . $status . "' where `id`=" . $id;
             $db->sql($sql);
-            echo "<p class='alert alert-success'>Learning status updated successfully!</p>";
+            echo "<p class='alert alert-success'>Cập nhật thành công!</p>";
         }
     } else {
         $sql = "Update `tbl_learning` set `status`='" . $status . "' where `id`=" . $id;
         $db->sql($sql);
-        echo "<p class='alert alert-success'>Learning status updated successfully!</p>";
+        echo "<p class='alert alert-success'>Cập nhật thành công!</p>";
     }
 }
 
@@ -1793,7 +1786,7 @@ if (isset($_POST['question']) && isset($_POST['add_learning_question'])) {
 
     $db->sql($sql);
     $res = $db->getResult();
-    echo '<label class="alert alert-success">Question created successfully!</label>';
+    echo '<label class="alert alert-success">Câu hỏi được tạo thành công!</label>';
 }
 
 // 51. update_learning_question
@@ -1819,7 +1812,7 @@ if (isset($_POST['question_id']) && isset($_POST['update_learning_question'])) {
     $sql .= " WHERE `id`=" . $id;
     $db->sql($sql);
 
-    echo "<p class='alert alert-success'>Question updated successfully!</p>";
+    echo "<p class='alert alert-success'>Cập nhật câu hỏi thành công!</p>";
 }
 
 // 52. delete_learning_question

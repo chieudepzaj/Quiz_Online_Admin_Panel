@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Questions for Learning | <?= ucwords($_SESSION['company_name']) ?> - Admin Panel </title>
+        <title>Câu Hỏi Cho Learning Zoom</title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -29,28 +29,28 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Questions for Learning <small>Create New Question</small></h2>
+                                    <h2>Câu Hỏi Cho Learning Zoom <small>Tạo câu hỏi mới</small></h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
                                     <div class="row">
                                         <form id="register_form" method="POST" action="db_operations.php" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="novalidate">
-                                            <h4 class="col-md-offset-1"><strong>Create a Question</strong></h4>
+                                            <h4 class="col-md-offset-1"><strong>Tạo Câu Hỏi</strong></h4>
                                             <input type="hidden" id="add_learning_question" name="add_learning_question" required value="1">
                                             <input type="hidden" id="learning_id" name="learning_id" value="<?= $_GET['id'] ?>" required>
 
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="question">Question</label>
+                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="question">Câu Hỏi</label>
                                                 <div class="col-md-10 col-sm-6 col-xs-12">
                                                     <textarea id="question" name="question" class="form-control" required></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer type">Question Type</label>
+                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer type">Loại Câu Hỏi</label>
                                                 <div class="col-md-8 col-sm-6 col-xs-12">                                                     
                                                     <div id="status" class="btn-group">
                                                         <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                            <input type="radio" name="question_type" value="1" checked=""> Options 
+                                                            <input type="radio" name="question_type" value="1" checked=""> Lựa Chọn 
                                                         </label>
                                                         <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                                             <input type="radio" name="question_type" value="2"> True / False
@@ -59,7 +59,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="a">Options</label>
+                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="a">Phương Án</label>
                                                 <div class="col-md-8 col-sm-6 col-xs-12"></div>
                                             </div>
                                             <div class="form-group">
@@ -96,10 +96,10 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                 <?php } ?>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer">Answer</label>
+                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer">Đáp Án</label>
                                                 <div class="col-md-10 col-sm-6 col-xs-12">
                                                     <select name='answer' id='answer' class='form-control'>
-                                                        <option value=''>Select Right Answer</option>
+                                                        <option value=''>Chọn Đáp Án<nav></nav></option>
                                                         <option value='a'>A</option>
                                                         <option value='b'>B</option>
                                                         <option class='ntf' value='c'>C</option>
@@ -113,7 +113,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                             <div class="ln_solid"></div>
                                             <div class="form-group">
                                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-1">
-                                                    <button type="submit" id="submit_btn" class="btn btn-success">Create Now</button>
+                                                    <button type="submit" id="submit_btn" class="btn btn-success">Tạo Câu Hỏi</button>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -124,7 +124,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                     </div>
                                     <div class='row'>
                                         <div class='col-md-12'>
-                                            <h2>Questions<small>View / Update / Delete</small></h2>
+                                            <h2>Danh Sách Câu Hỏi <small> Xem / Cập Nhật / Xóa</small></h2>
                                         </div>
                                         <div class='col-md-12'><hr></div>
                                     </div>
@@ -152,17 +152,17 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                             <tr>
                                                 <th scope="col" data-field="state" data-checkbox="true"></th>
                                                 <th scope="col" data-field="id" data-sortable="true">ID</th>
-                                                <th scope="col" data-field="question" data-sortable="true">Question</th>
-                                                <th scope="col" data-field="question_type" data-sortable="true" data-visible='false'>Question Type</th>
-                                                <th scope="col" data-field="optiona" data-sortable="true">Option A</th>
-                                                <th scope="col" data-field="optionb" data-sortable="true">Option B</th>
-                                                <th scope="col" data-field="optionc" data-sortable="true">Option C</th>
-                                                <th scope="col" data-field="optiond" data-sortable="true">Option D</th>
+                                                <th scope="col" data-field="question" data-sortable="true">Câu Hỏi</th>
+                                                <th scope="col" data-field="question_type" data-sortable="true" data-visible='false'>Loại Câu Hỏi</th>
+                                                <th scope="col" data-field="optiona" data-sortable="true">Phương Án A</th>
+                                                <th scope="col" data-field="optionb" data-sortable="true">Phương Án B</th>
+                                                <th scope="col" data-field="optionc" data-sortable="true">Phương Án C</th>
+                                                <th scope="col" data-field="optiond" data-sortable="true">Phương Án D</th>
                                                 <?php if ($fn->is_option_e_mode_enabled()) { ?>
-                                                    <th scope="col" data-field="optione" data-sortable="true">Option E</th>
+                                                    <th scope="col" data-field="optione" data-sortable="true">Phương Án E</th>
                                                 <?php } ?>
-                                                <th scope="col" data-field="answer" data-sortable="true" data-visible='false'>Answer</th>
-                                                <th scope="col" data-field="operate" data-events="actionEvents">Operate</th>
+                                                <th scope="col" data-field="answer" data-sortable="true" data-visible='false'>Đáp Án</th>
+                                                <th scope="col" data-field="operate" data-events="actionEvents">Thao Tác</th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -178,7 +178,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Edit Question</h4>
+                            <h4 class="modal-title" id="myModalLabel">Chỉnh Sửa Câu Hỏi</h4>
                         </div>
                         <div class="modal-body">
                             <form id="update_form"  method="POST" action ="db_operations.php" data-parsley-validate class="form-horizontal form-label-left">
@@ -186,17 +186,17 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                 <input type='hidden' name="update_learning_question" id="update_learning_question" value='1'/>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="question">Question</label>
+                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="question">Câu Hỏi</label>
                                     <div class="col-md-10 col-sm-6 col-xs-12">
                                         <textarea type="text" id="edit_question" name="question" required="required" class="form-control col-md-7 col-xs-12" aria-required="true"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer type">Question Type</label>
+                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer type">Loại Câu Hỏi</label>
                                     <div class="col-md-8 col-sm-6 col-xs-12">                                                     
                                         <div id="status" class="btn-group">
                                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="edit_question_type" value="1" checked=""> Options 
+                                                <input type="radio" name="edit_question_type" value="1" checked=""> Lựa Chọn 
                                             </label>
                                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                                 <input type="radio" name="edit_question_type" value="2"> True / False
@@ -205,7 +205,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="a">Options</label>
+                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="a">Phương Án</label>
                                     <div class="col-md-8 col-sm-6 col-xs-12"></div>
                                 </div>
                                 <div class="form-group">
@@ -241,10 +241,10 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                     <?php } ?>
                                 </div>                               
                                 <div class="form-group">
-                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer">Answer</label>
+                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer">Đáp Án</label>
                                     <div class="col-md-10 col-sm-6 col-xs-12">
                                         <select name="answer" id="edit_answer" class="form-control" required>
-                                            <option value="">Select Right Answer</option>
+                                            <option value="">Chọn Đáp Án</option>
                                             <option value="a">A</option>
                                             <option value="b">B</option>
                                             <option class='edit_ntf' value="c">C</option>
@@ -258,7 +258,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                        <button type="submit" id="update_btn" class="btn btn-success">Update Question</button>
+                                        <button type="submit" id="update_btn" class="btn btn-success">Cập Nhật</button>
                                     </div>
                                 </div>
                             </form>
@@ -312,7 +312,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         </script>
         <script>
             $(document).on('click', '.delete-question', function () {
-                if (confirm('Are you sure? Want to delete question')) {
+                if (confirm('Bạn có muốn xóa câu hỏi không?')) {
                     id = $(this).data("id");
                     $.ajax({
                         url: 'db_operations.php',
@@ -322,7 +322,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             if (result == 1) {
                                 $('#questions').bootstrapTable('refresh');
                             } else
-                                alert('Error! Question could not be deleted');
+                                alert('Lỗi!!!');
                         }
                     });
                 }
@@ -371,14 +371,14 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         url: $(this).attr('action'),
                         data: formData,
                         beforeSend: function () {
-                            $('#submit_btn').html('Please wait..');
+                            $('#submit_btn').html('Xin chờ...');
                             $('#submit_btn').prop('disabled', true);
                         },
                         cache: false,
                         contentType: false,
                         processData: false,
                         success: function (result) {
-                            $('#submit_btn').html('Create Now');
+                            $('#submit_btn').html('Tạo Câu Hỏi');
                             $('#result').html(result);
                             $('#result').show().delay(4000).fadeOut();
                             $('#register_form')[0].reset();
@@ -415,19 +415,19 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         url: $(this).attr('action'),
                         data: formData,
                         beforeSend: function () {
-                            $('#update_btn').html('Please wait..');
+                            $('#update_btn').html('Xin chờ...');
                         },
                         cache: false,
                         contentType: false,
                         processData: false,
                         success: function (result) {
                             $('#update_result').html(result);
-                            $('#update_result').show().delay(3000).fadeOut();
-                            $('#update_btn').html('Update Question');
+                            $('#update_result').show().delay(2000).fadeOut();
+                            $('#update_btn').html('Cập Nhật');
                             $('#questions').bootstrapTable('refresh');
                             setTimeout(function () {
                                 $('#editQuestionModal').modal('hide');
-                            }, 4000);
+                            }, 3000);
                         }
                     });
                 }
@@ -449,9 +449,9 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 });
                 ids = ids.slice(0, -1); // removes last comma character
                 if (ids == "") {
-                    alert("Please select some questions to delete!");
+                    alert("Vui lòng chọn một số câu hỏi để xóa!");
                 } else {
-                    if (confirm("Are you sure you want to delete all selected questions?")) {
+                    if (confirm("Bạn có muốn xóa tất cả các câu hỏi đã chọn?")) {
                         $.ajax({
                             type: 'GET',
                             url: "db_operations.php",
@@ -461,9 +461,9 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             },
                             success: function (result) {
                                 if (result == 1) {
-                                    alert("Questions deleted successfully");
+                                    alert("Câu hỏi đã xóa thành công.");
                                 } else {
-                                    ("Could not delete questions. Try again!");
+                                    ("Không thể xóa câu hỏi. Thử lại!");
                                 }
                                 delete_button.html('<i class="fa fa-trash"></i>');
                                 table.bootstrapTable('refresh');

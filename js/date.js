@@ -261,15 +261,15 @@
 		},
 		formatPatterns: function () {
 			return getText.getFromObjectValues({
-				shortDate: "M/d/yyyy",
+				shortDate: "d/M/yyyy",
 				longDate: "dddd, MMMM dd, yyyy",
 				shortTime: "h:mm tt",
 				longTime: "h:mm:ss tt",
-				fullDateTime: "dddd, MMMM dd, yyyy h:mm:ss tt",
-				sortableDateTime: "yyyy-MM-ddTHH:mm:ss",
-				universalSortableDateTime: "yyyy-MM-dd HH:mm:ssZ",
-				rfc1123: "ddd, dd MMM yyyy HH:mm:ss",
-				monthDay: "MMMM dd",
+				fullDateTime: "h:mm:ss tt dddd, dd MMMM , yyyy ",
+				sortableDateTime: "dd-MM-yyyyTHH:mm:ss",
+				universalSortableDateTime: "HH:mm:ssZyyyy-MM-dd ",
+				rfc1123: "HH:mm:ss ddd, dd MMM yyyy",
+				monthDay: "dd MMMM",
 				yearMonth: "MMMM, yyyy"
 			}, Date.i18n.currentLanguage());
 		},

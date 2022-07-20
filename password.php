@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Change Password | <?= ucwords($_SESSION['company_name']) ?> </title>
+        <title>Đổi mật khẩu </title>
 
         <?php include 'include-css.php'; ?>
 
@@ -31,14 +31,14 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Change Password</h2>
+                                    <h2>Đổi mật khẩu</h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
                                     <br />
                                     <form id="password_form"  method="POST" action ="change_password.php" class="form-horizontal form-label-left">
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="old_password">Old Password<span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="old_password">Mật Khẩu Cũ<span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input type="password" id="old_password" name="old_password" required="required" class="form-control col-md-7 col-xs-12">
@@ -46,14 +46,14 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                             <label id="old_status"></label>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_password">New Password<span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_password">Mật Khẩu Mới<span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input type="password" id="new_password" name="new_password" required class="form-control col-md-7 col-xs-12">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="confirm_password">Confirm Password<span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="confirm_password">Xác Nhận Mật Khẩu Mới<span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input type="password" id="confirm_password" name="confirm_password" required class="form-control col-md-7 col-xs-12">
@@ -66,7 +66,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                                <button type="submit" id="submit_btn" class="btn btn-success">Submit</button>
+                                                <button type="submit" id="submit_btn" class="btn btn-success">Cập Nhật</button>
                                             </div>
                                         </div>
                                     </form>
@@ -95,7 +95,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 },
                 messages: {
                     confirm_password: {
-                        equalTo: "password and confirm password must be a same"
+                        equalTo: "Mật khẩu mới không khớp."
                     }
                 }
             });
@@ -136,13 +136,13 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             url: $(this).attr('action'),
                             data: formData,
                             beforeSend: function () {
-                                $('#submit_btn').html('Please wait..');
+                                $('#submit_btn').html('Xin chờ..');
                             },
                             success: function (result) {
                                 $('#old_status').html('');
                                 $('#result').html(result);
                                 $('#result').show().delay(4000).fadeOut();
-                                $('#submit_btn').html('Submit');
+                                $('#submit_btn').html('Cập Nhật');
                                 $('#password_form')[0].reset();
                             }
                         });

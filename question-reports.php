@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Question Reports by users | <?= ucwords($_SESSION['company_name']) ?> - Admin Panel </title>
+        <title>Báo Cáo Về Câu Hỏi </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -29,7 +29,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Questions Reported by Users</h2>
+                                    <h2>Báo Cáo Câu Hỏi Của Người Dùng</h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -37,7 +37,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                         <div class='col-md-12'>
                                             <div class="row" id="toolbar">
                                                 <div class="col-md-3">
-                                                    <button class="btn btn-danger btn-sm" id="delete_multiple_question_reports" title="Delete Selected Question Reports"><em class='fa fa-trash'></em></button>
+                                                    <button class="btn btn-danger btn-sm" id="delete_multiple_question_reports" title="Xóa Báo Cáo Câu Hỏi Đã Chọn"><em class='fa fa-trash'></em></button>
                                                 </div>
                                             </div>
                                             <table aria-describedby="mydesc" class='table-striped' id='report_list'
@@ -64,13 +64,13 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                     <tr>
                                                         <th scope="col" data-field="state" data-checkbox="true"></th>
                                                         <th scope="col" data-field="id" data-sortable="true">ID</th>
-                                                        <th scope="col" data-field="user_id" data-sortable="true" data-visible='false'>User ID</th>
-                                                        <th scope="col" data-field="name" data-sortable="true">Name</th>
-                                                        <th scope="col" data-field="question_id" data-sortable="true" data-visible='false'>Question ID</th>
-                                                        <th scope="col" data-field="question" data-sortable="true">Question</th>
-                                                        <th scope="col" data-field="message" data-sortable="true">Message</th>
-                                                        <th scope="col" data-field="date" data-sortable="true">Date</th>
-                                                        <th scope="col" data-field="operate">Operate</th>
+                                                        <th scope="col" data-field="user_id" data-sortable="true">ID Người Dùng</th>
+                                                        <th scope="col" data-field="name" data-sortable="true" data-visible='false'>Tên Người Dùng</th>
+                                                        <th scope="col" data-field="question_id" data-sortable="true" data-visible='false'>ID Câu Hỏi</th>
+                                                        <th scope="col" data-field="question" data-sortable="true">Câu Hỏi</th>
+                                                        <th scope="col" data-field="message" data-sortable="true">Nội Dung Báo Cáo</th>
+                                                        <th scope="col" data-field="date" data-sortable="true">Ngày</th>
+                                                        <th scope="col" data-field="operate">Thao Tác</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -110,9 +110,9 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 });
                 ids = ids.slice(0, -1); // removes last comma character
                 if (ids == "") {
-                    alert("Please select some question reports to delete!");
+                    alert("Hãy chọn một số trường để xóa!!");
                 } else {
-                    if (confirm("Are you sure you want to delete all selected question reports?")) {
+                    if (confirm("Bạn có muốn xóa tất cả các trường được chọn?")) {
                         $.ajax({
                             type: 'GET',
                             url: "db_operations.php",
@@ -122,9 +122,9 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             },
                             success: function (result) {
                                 if (result == 1) {
-                                    alert("Question reports deleted successfully");
+                                    alert("Thành công.");
                                 } else {
-                                    alert("Could not delete question reports. Try again!");
+                                    alert("Có lỗi xảy ra. Hãy thử lại!");
                                 }
                                 delete_button.html('<i class="fa fa-trash"></i>');
                                 table.bootstrapTable('refresh');
@@ -137,7 +137,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <!-- jQuery -->
         <script>
             $(document).on('click', '.delete-report', function () {
-                if (confirm('Are you sure? Want to delete report')) {
+                if (confirm('Bạn muốn xóa báo cáo này không?')) {
                     id = $(this).data("id");
                     $.ajax({
                         url: 'db_operations.php',
@@ -147,7 +147,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             if (result == 1) {
                                 $('#report_list').bootstrapTable('refresh');
                             } else
-                                alert('Error! Report could not be deleted');
+                                alert('Lỗi! Báo cáo này chưa được xóa.');
                         }
                     });
                 }

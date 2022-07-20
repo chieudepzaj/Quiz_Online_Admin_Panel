@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>About Us | <?= ucwords($_SESSION['company_name']) ?> Admin Panel  </title>
+        <title>Giới Thiệu</title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -29,7 +29,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>About Us <small>About content for App</small></h2>
+                                    <h2>Giới Thiệu <small> Nội dung ứng dụng</small></h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -41,14 +41,11 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                     $res = $db->getResult();
                                     $data1 = $res[0]; /* about us message */
                                     ?>
-                                    <div class="col-md-offset-1 col-md-6">
-                                        <h4>About Us <small>About content for App Users</small></h4>
-                                    </div>
                                     <div class="col-md-12"><hr style="margin-top: 5px;"></div>
                                     <form id="about_form"  method="POST" action ="db_operations.php"data-parsley-validate class="form-horizontal form-label-left">
                                         <input type="hidden" id="update_about_us" name="update_about_us" required value='1'/>
                                         <div class="form-group">
-                                            <label class="control-label col-md-2" for="message">About Us</label>
+                                            <label class="control-label col-md-2" for="message">Giới Thiệu</label>
                                             <div class="col-md-9">
                                                 <textarea name='message' id='about_us' class='form-control' ><?= $data1['message']; ?></textarea>
                                             </div>
@@ -56,7 +53,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                         <div class="ln_solid"></div>
                                         <div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                                <button type="submit" id="submit_about_btn" class="btn btn-success">Update About Us</button>
+                                                <button type="submit" id="submit_about_btn" class="btn btn-success">Cập Nhật</button>
                                             </div>
                                         </div>
                                     </form>
@@ -102,7 +99,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 e.preventDefault();
                 var formData = new FormData(this);
                 if ($("#about_form").validate().form()) {
-                    if (confirm('Are you sure? Want to change the about us content? This will reflect to all app users')) {
+                    if (confirm('Bạn có chắc muốn thay đổi nội dung Giới thiệu ?')) {
                         $.ajax({
                             type: 'POST',
                             url: $(this).attr('action'),
@@ -116,7 +113,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             success: function (result) {
                                 $('#about_result').html(result);
                                 $('#about_result').show().delay(3000).fadeOut();
-                                $('#submit_about_btn').html('Update About Us');
+                                $('#submit_about_btn').html('Cập Nhật');
                             }
                         });
                     }

@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Terms Conditions | <?= ucwords($_SESSION['company_name']) ?> Admin Panel  </title>
+        <title>Điều Khoản Dịch Vụ </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -29,7 +29,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Terms Conditions <small>Update terms conditions here</small></h2>
+                                    <h2>Điều Khoản Dịch Vụ <small> Cập nhật / Thay đổi</small></h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -41,17 +41,11 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                     $res = $db->getResult();
                                     $data1 = $res[0];
                                     ?>
-                                    <div class="col-md-offset-1 col-md-6">
-                                        <h4>Terms Conditions <small>terms for App Usage</small></h4>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href='play-store-terms-conditions.php' target='_blank' class='btn btn-primary btn-sm'>Terms & Conditions Page for Play Store</a>
-                                    </div>
                                     <div class="col-md-12"><hr style="margin-top: 5px;"></div>
                                     <form id="terms_form"  method="POST" action ="db_operations.php"data-parsley-validate class="form-horizontal form-label-left">
                                         <input type="hidden" id="update_terms" name="update_terms" required value='1'/>
                                         <div class="form-group">
-                                            <label class="control-label col-md-2" for="message">Terms Conditions</label>
+                                            <label class="control-label col-md-2" for="message">Điều Khoản Dịch Vụ</label>
                                             <div class="col-md-9">
                                                 <textarea name='message' id='terms' class='form-control' ><?= $data1['message']; ?></textarea>
                                             </div>
@@ -59,7 +53,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                         <div class="ln_solid"></div>
                                         <div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                                <button type="submit" id="submit_privacy_btn" class="btn btn-success">Update terms</button>
+                                                <button type="submit" id="submit_privacy_btn" class="btn btn-success">Cập Nhật</button>
                                             </div>
                                         </div>
                                     </form>
@@ -105,13 +99,13 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 e.preventDefault();
                 var formData = new FormData(this);
                 if ($("#terms_form").validate().form()) {
-                    if (confirm('Are you sure? Want to change the terms conditions? This will reflect to all app users')) {
+                    if (confirm('Bạn muốn cập nhật Điều Khoản Dịch Vụ không ? Điều này sẽ thay đổi trực tiếp lên ứng dụng người dùng.')) {
                         $.ajax({
                             type: 'POST',
                             url: $(this).attr('action'),
                             data: formData,
                             beforeSend: function () {
-                                $('#submit_privacy_btn').html('Please updating..');
+                                $('#submit_privacy_btn').html('Đang cập nhật..');
                             },
                             cache: false,
                             contentType: false,
@@ -119,7 +113,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             success: function (result) {
                                 $('#privacy_result').html(result);
                                 $('#privacy_result').show().delay(3000).fadeOut();
-                                $('#submit_privacy_btn').html('Update terms');
+                                $('#submit_privacy_btn').html('Cập Nhật');
                                 // $('#register_form')[0].reset();
                             }
                         });

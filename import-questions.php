@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Import Questions | <?= ucwords($_SESSION['company_name']) ?> Admin Panel  </title>
+        <title>Nhập Câu Hỏi </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -29,7 +29,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Import Questions <small>upload using CSV file</small></h2>
+                                    <h2>Nhập Câu Hỏi <small>Tải lên bằng tệp CSV</small></h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -37,7 +37,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                     <form id="register_form"  method="POST" action ="db_operations.php"data-parsley-validate class="form-horizontal form-label-left">
                                         <input type="hidden" id="import_questions" name="import_questions" required value='1'/>
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="questions_file">CSV Questions file</label>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="questions_file">Tệp Câu Hỏi CSV</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input type="file" name="questions_file" id="questions_file" required class="form-control col-md-7 col-xs-12" accept=".csv" />
                                             </div>
@@ -45,10 +45,10 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                         <div class="ln_solid"></div>
                                         <div class="form-group">
                                             <div class="col-md-3 col-sm-6 col-xs-12 col-md-offset-3">
-                                                <button type="submit" id="submit_btn" class="btn btn-success">Upload CSV file</button>
+                                                <button type="submit" id="submit_btn" class="btn btn-success">Tải Lên Tệp CSV</button>
                                             </div>
                                             <div class="col-md-4 col-sm-6 col-xs-12">
-                                                <a class='btn btn-warning' href='library/data-format.csv' target="_blank"> <em class='fas fa-download'></em> Download Sample File Here</a>
+                                                <a class='btn btn-warning' href='library/data-format.csv' target="_blank"> <em class='fas fa-download'></em> Tải Xuống Tệp Mẫu Tại Đây</a>
                                             </div>
                                         </div>
                                     </form>                                 
@@ -60,16 +60,18 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             </div>
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2 class="text-danger">How to convert CSV in to Unicode (For Non English)</h2>
+                                    <h2 class="text-danger">Cách Điền File Câu Hỏi Từ Mẫu Tải Xuống</h2>
                                     <div class="clearfix"></div>
                                 </div>                                
-                                <p>1. Fill the data in excel sheet which we given<p>
-                                <p>2. SAVE AS this file <b>Unicode Text (*.txt)</b></p>
-                                <p>3. Open .txt file in Notepad.</p>
-                                <p>4. Replace Tab space(    ) with ( , )comma.</p>
-                                <p>5. Save as this file with .txt extension and change the encoding : <b>UTF-8</b>.</p>
-                                <p>6. Change the file extension .txt to .csv.</p>
-                                <p>7. Now this file use import question.</p>
+                                <p>1. Cột A: ID Danh mục.<p>
+                                <p>2. Cột B: ID Danh mục con.</p>
+                                <p>3. Cột C: ID Ngôn Ngữ.</p>
+                                <p>4. Cột D: Loại câu hỏi <b>( 1:Câu hỏi nhiều lựa chọn, 2: Dạng đúng sai )</b>.</p>
+                                <p>5. Cột E: Câu hỏi.</p>
+                                <p>6. Cột F->J: Các phương án để chọn<b>( Nếu dạng câu hỏi đúng sai thì bỏ trống cột H->J)</b></p>
+                                <p>7. Cột K: Đáp án</p>
+                                <p>8. Cột L: Level câu hỏi (không bắt buộc)</p>
+                                <p>9. Cột M: Ghi chú < nếu có ></p>
                             </div>
                         </div>
                     </div>
@@ -92,7 +94,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                     url: $(this).attr('action'),
                     data: formData,
                     beforeSend: function () {
-                        $('#submit_btn').html('Uploading questions..');
+                        $('#submit_btn').html('Đang tải lên..');
                     },
                     cache: false,
                     contentType: false,
@@ -100,7 +102,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                     success: function (result) {
                         $('#result').html(result);
                         $('#result').show().delay(6000).fadeOut();
-                        $('#submit_btn').html('Upload CSV file');
+                        $('#submit_btn').html('Tải Lên Tệp CSV');
                         $('#questions_file').val('');
                     }
                 });

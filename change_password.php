@@ -38,9 +38,9 @@ if (isset($_POST['new_password']) && isset($_POST['old_password'])) {
     $sql = "UPDATE authenticate SET auth_pass='$pwordhash' WHERE auth_username='$auth_username'";
 
     if ($db->sql($sql)) {
-        echo "password change successfully!";
+        echo "Đổi mật khẩu thành công!";
     } else {
-        echo "Something wrong";
+        echo "Xảy ra lỗi !!!";
     }
 }
 ?>

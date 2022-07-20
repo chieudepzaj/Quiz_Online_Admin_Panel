@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Privacy Policy | <?= ucwords($_SESSION['company_name']) ?> Admin Panel  </title>
+        <title>Chính Sách Bảo Mật </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -28,8 +28,8 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>System Settings <small>Update system settings here</small></h2>
+                            <div class="x_title">
+                                    <h2>Chính Sách Bảo Mật  <small>Thay đổi / Cập nhật</small></h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -41,17 +41,11 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                     $res = $db->getResult();
                                     $data1 = $res[0]; /* privacy policy message */
                                     ?>
-                                    <div class="col-md-offset-1 col-md-6">
-                                        <h4>Privacy Policy <small>Policy for App Usage</small></h4>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href='play-store-privacy-policy.php' target='_blank' class='btn btn-primary btn-sm'>Privacy Policy Page for Play Store</a>
-                                    </div>
                                     <div class="col-md-12"><hr style="margin-top: 5px;"></div>
                                     <form id="policy_form"  method="POST" action ="db_operations.php"data-parsley-validate class="form-horizontal form-label-left">
                                         <input type="hidden" id="update_policy" name="update_policy" required value='1'/>
                                         <div class="form-group">
-                                            <label class="control-label col-md-2" for="message">Privacy Policy</label>
+                                            <label class="control-label col-md-2" for="message">Chính Sách Bảo Mật</label>
                                             <div class="col-md-9">
                                                 <textarea name='message' id='policy' class='form-control' ><?= $data1['message']; ?></textarea>
                                             </div>
@@ -59,7 +53,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                         <div class="ln_solid"></div>
                                         <div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                                <button type="submit" id="submit_privacy_btn" class="btn btn-success">Update Policy</button>
+                                                <button type="submit" id="submit_privacy_btn" class="btn btn-success">Cập Nhật</button>
                                             </div>
 
                                         </div>
@@ -105,13 +99,13 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 e.preventDefault();
                 var formData = new FormData(this);
                 if ($("#policy_form").validate().form()) {
-                    if (confirm('Are you sure? Want to change the privacy policy? This will reflect to all app users')) {
+                    if (confirm('Bạn muốn cập nhật Chính Sách Bảo Mật không ? Điều này sẽ thay đổi trực tiếp lên ứng dụng người dùng.')) {
                         $.ajax({
                             type: 'POST',
                             url: $(this).attr('action'),
                             data: formData,
                             beforeSend: function () {
-                                $('#submit_privacy_btn').html('Please updating..');
+                                $('#submit_privacy_btn').html('Đang cập nhật..');
                             },
                             cache: false,
                             contentType: false,
@@ -119,7 +113,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             success: function (result) {
                                 $('#privacy_result').html(result);
                                 $('#privacy_result').show().delay(3000).fadeOut();
-                                $('#submit_privacy_btn').html('Update Policy');
+                                $('#submit_privacy_btn').html('Cập Nhật');
                                 // $('#register_form')[0].reset();
                             }
                         });

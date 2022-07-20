@@ -29,12 +29,12 @@ $config = $fn->get_configurations();
 if (isset($config['system_timezone']) && !empty($config['system_timezone'])) {
     date_default_timezone_set($config['system_timezone']);
 } else {
-    date_default_timezone_set('Asia/Kolkata');
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
 }
 if (isset($config['system_timezone_gmt']) && !empty($config['system_timezone_gmt'])) {
     $db->sql("SET `time_zone` = '" . $config['system_timezone_gmt'] . "'");
 } else {
-    $db->sql("SET `time_zone` = '+05:30'");
+    $db->sql("SET `time_zone` = '+07:00'");
 }
 
 $db->sql("SET NAMES 'utf8'");

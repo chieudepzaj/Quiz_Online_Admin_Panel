@@ -15,7 +15,7 @@ $type = '2';
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Learning Zone | <?= ucwords($_SESSION['company_name']) ?> - Admin Panel </title>
+        <title>Quản lý Learning Zoom </title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -30,7 +30,7 @@ $type = '2';
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Learning Zone</h2>
+                                    <h2>Learning Zoom</h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -51,18 +51,18 @@ $type = '2';
                                                 $languages = $db->getResult();
                                                 ?>
                                                 <div class="col-md-6 col-sm-12">
-                                                    <label>Language</label>
+                                                    <label>Ngôn Ngữ</label>
                                                     <select id="language_id" name="language_id" required class="form-control">
-                                                        <option value="">Select language</option>
+                                                        <option value="">Chọn Ngôn Ngữ</option>
                                                         <?php foreach ($languages as $language) { ?>
                                                             <option value='<?= $language['id'] ?>'><?= $language['language'] ?></option>
                                                         <?php } ?>
                                                     </select> 
                                                 </div>
                                                 <div class="col-md-6 col-sm-12">
-                                                    <label>Main Category</label>
+                                                    <label>Chủ Đề</label>
                                                     <select id="category" name="category" required class="form-control">
-                                                        <option value=''>Select Options</option>
+                                                        <option value=''>Chọn</option>
                                                         <?php foreach ($categories as $category) { ?>
                                                             <option value='<?= $category['id'] ?>'><?= $category['category_name'] ?></option>
                                                         <?php } ?>
@@ -72,9 +72,9 @@ $type = '2';
                                         <?php } else { ?>
                                             <div class="form-group row">
                                                 <div class="col-md-12 col-sm-12">
-                                                    <label>Main Category</label>
+                                                    <label>Chủ Đề</label>
                                                     <select id="category" name="category" required class="form-control">
-                                                        <option value=''>Select Options</option>
+                                                        <option value=''>Chọn Chủ Đề</option>
                                                         <?php foreach ($categories as $category) { ?>
                                                             <option value='<?= $category['id'] ?>'><?= $category['category_name'] ?></option>
                                                         <?php } ?>
@@ -84,20 +84,20 @@ $type = '2';
                                         <?php } ?>
                                         <div class="form-group row">
                                             <div class="col-md-12 col-sm-12">
-                                                <label>Title</label>
-                                                <input name="title" type="text" placeholder="Enter Title" require class="form-control"/>
+                                                <label>Tiêu Đề</label>
+                                                <input name="title" type="text" placeholder="Điền tiêu đề" require class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="form-group row">                                               
                                             <div class="col-md-12 col-sm-12">
-                                                <label>Detail</label>
+                                                <label>Nội Dung</label>
                                                 <textarea name='detail' id='detail' class='form-control'></textarea>
                                             </div>
                                         </div>
                                         <div class="ln_solid"></div>
                                         <div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <button type="submit" id="submit_btn" class="btn btn-success">Create Now</button>
+                                                <button type="submit" id="submit_btn" class="btn btn-success">Thêm Mới</button>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -109,13 +109,13 @@ $type = '2';
                                 </div>
                                 <div class='row'>
                                     <div class='col-md-12'>
-                                        <h2>Learning Zone <small>View / Update / Delete</small></h2>
+                                        <h2>Learning Zoom <small>Xem / Cập Nhật / Xóa</small></h2>
                                     </div>
                                     <div class='col-md-12'>
                                         <?php if ($fn->is_language_mode_enabled()) { ?>
                                             <div class='col-md-3'>
                                                 <select id='filter_language' class='form-control' required>
-                                                    <option value="">Select language</option>
+                                                    <option value="">Chọn Ngôn Ngữ</option>
                                                     <?php foreach ($languages as $language) { ?>
                                                         <option value='<?= $language['id'] ?>'><?= $language['language'] ?></option>
                                                     <?php } ?>
@@ -123,13 +123,13 @@ $type = '2';
                                             </div>
                                             <div class='col-md-3'>
                                                 <select id='filter_category' class='form-control' required>
-                                                    <option value=''>Select Category</option>
+                                                    <option value=''>Chọn Chủ Đề</option>
                                                 </select>
                                             </div>
                                         <?php } else { ?>
                                             <div class='col-md-3'>
                                                 <select id='filter_category' class='form-control' required>
-                                                    <option value=''>Select Category</option>
+                                                    <option value=''>Chọn Chủ Đề</option>
                                                     <?php foreach ($categories as $row) { ?>
                                                         <option value='<?= $row['id'] ?>'><?= $row['category_name'] ?></option>
                                                     <?php } ?>
@@ -137,7 +137,7 @@ $type = '2';
                                             </div>
                                         <?php } ?>
                                         <div class='col-md-3'>
-                                            <button class='btn btn-primary btn-block' id='filter_btn'>Filter Data</button>
+                                            <button class='btn btn-primary btn-block' id='filter_btn'>Lọc</button>
                                         </div>
                                     </div>
                                     <div class='col-md-12'><hr></div>
@@ -166,15 +166,15 @@ $type = '2';
                                         <tr>
                                             <th scope="col" data-field="state" data-checkbox="true"></th>
                                             <th scope="col" data-field="id" data-sortable="true">ID</th>
-                                            <th scope="col" data-field="status" data-sortable="false">Status</th>
-                                            <th scope="col" data-field="category" data-sortable="true" data-visible='false'>Category</th>
+                                            <th scope="col" data-field="status" data-sortable="false">Trạng Thái</th>
+                                            <th scope="col" data-field="category" data-sortable="true" data-visible='false'>Chủ Đề</th>
                                             <?php if ($fn->is_language_mode_enabled()) { ?>
-                                                <th scope="col" data-field="language_id" data-sortable="true" data-visible='false'>Language ID</th>
-                                                <th scope="col" data-field="language" data-sortable="true" data-visible='true'>Language</th>
+                                                <th scope="col" data-field="language_id" data-sortable="true" data-visible='false'>ID Ngôn Ngữ</th>
+                                                <th scope="col" data-field="language" data-sortable="true" data-visible='true'>Ngôn Ngữ</th>
                                             <?php } ?>
-                                            <th scope="col" data-field="title" data-sortable="true">Title</th>
-                                            <th scope="col" data-field="detail" data-sortable="false" data-visible='false'>Detail</th>
-                                            <th scope="col" data-field="operate" data-events="actionEvents">Operate</th>
+                                            <th scope="col" data-field="title" data-sortable="true">Tiêu Đề</th>
+                                            <th scope="col" data-field="detail" data-sortable="false" data-visible='false'>Nội Dung</th>
+                                            <th scope="col" data-field="operate" data-events="actionEvents">Thao Tác</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -190,7 +190,7 @@ $type = '2';
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Edit Learning Zone</h4>
+                        <h4 class="modal-title" id="myModalLabel">Chỉnh sửa Learning Zoom</h4>
                     </div>
                     <div class="modal-body">
                         <form id="update_form"  method="POST" action ="db_operations.php" data-parsley-validate class="form-horizontal form-label-left">
@@ -208,9 +208,9 @@ $type = '2';
                                         $db->sql($sql);
                                         $languages = $db->getResult();
                                         ?>
-                                        <label>Language</label>
+                                        <label>Ngôn Ngữ</label>
                                         <select id="update_language_id" name="language_id" required class="form-control col-md-7 col-xs-12">
-                                            <option value="">Select language</option>
+                                            <option value="">Chọn Ngôn Ngữ </option>
                                             <?php foreach ($languages as $language) { ?>
                                                 <option value='<?= $language['id'] ?>'><?= $language['language'] ?></option>
                                             <?php } ?>
@@ -220,9 +220,9 @@ $type = '2';
                             <?php } ?>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <label>Category</label>                                
+                                    <label>Chủ Đề</label>                                
                                     <select name='category' id='edit_category' class='form-control' required>
-                                        <option value=''>Select Main Category</option>
+                                        <option value=''>Chọn Chủ Đề</option>
                                         <?php foreach ($categories as $row) { ?>
                                             <option value='<?= $row['id'] ?>'><?= $row['category_name'] ?></option>
                                         <?php } ?>
@@ -231,14 +231,14 @@ $type = '2';
                             </div>
                             <div class="form-group row">                                                    
                                 <div class="col-md-12 col-sm-12">
-                                    <label class="control-label">Title</label>
+                                    <label class="control-label">Tiêu Đề</label>
                                     <input id="title" name="title" type="text" class="form-control" placeholder="Enter Title" required>
                                 </div>                                   
                             </div>
 
                             <div class="form-group row">                                                 
                                 <div class="col-md-12 col-sm-12">
-                                    <label class="control-label">Detail</label>
+                                    <label class="control-label">Nội Dung</label>
                                     <textarea id="edit_detail" name="detail" class="form-control"></textarea>
                                 </div>
                             </div>
@@ -246,7 +246,7 @@ $type = '2';
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button type="submit" id="update_btn" class="btn btn-success">Update</button>
+                                    <button type="submit" id="update_btn" class="btn btn-success">Cập Nhật</button>
                                 </div>
                             </div>
                         </form>
@@ -260,7 +260,7 @@ $type = '2';
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Edit Learning Zone</h4>
+                        <h4 class="modal-title" id="myModalLabel">Cập Nhật Trạng Thái</h4>
                     </div>
                     <div class="modal-body">
                         <form id="update_status_form"  method="POST" action ="db_operations.php" data-parsley-validate class="form-horizontal form-label-left">
@@ -268,7 +268,7 @@ $type = '2';
                             <input type='hidden' name="update_learning_status" id="update_learning_status" value='1'/>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Trạng Thái</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div id="status" class="btn-group" >
                                         <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
@@ -284,7 +284,7 @@ $type = '2';
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button type="submit" id="update_status_btn" class="btn btn-success">Update</button>
+                                    <button type="submit" id="update_status_btn" class="btn btn-success">Cập Nhật</button>
                                 </div>
                             </div>
                         </form>
@@ -310,7 +310,7 @@ $type = '2';
                     url: "db_operations.php",
                     data: 'get_categories_of_language=1&language_id=' + language_id + '&type=' + type,
                     beforeSend: function () {
-                        $('#category').html('Please wait..');
+                        $('#category').html('Xin chờ..');
                     },
                     success: function (result) {
                         $('#category').html(result);
@@ -324,7 +324,7 @@ $type = '2';
                     url: "db_operations.php",
                     data: 'get_categories_of_language=1&language_id=' + language_id + '&type=' + type,
                     beforeSend: function () {
-                        $('#edit_category').html('Please wait..');
+                        $('#edit_category').html('Xin chờ..');
                     },
                     success: function (result) {
                         $('#edit_category').html(result).trigger("change");
@@ -340,7 +340,7 @@ $type = '2';
                     url: "db_operations.php",
                     data: 'get_categories_of_language=1&language_id=' + language_id + '&type=' + type,
                     beforeSend: function () {
-                        $('#filter_category').html('<option>Please wait..</option>');
+                        $('#filter_category').html('<option>Xin chờ..</option>');
                     },
                     success: function (result) {
                         $('#filter_category').html(result);
@@ -390,7 +390,7 @@ $type = '2';
     </script>
     <script>
         $(document).on('click', '.delete-data', function () {
-            if (confirm('Are you sure? Want to delete learning? All related questions will also be deleted')) {
+            if (confirm('Bạn muốn xóa không? Tất cả các dữ liệu liên quan cũng sẽ bị xóa.')) {
                 id = $(this).data("id");
                 $.ajax({
                     url: 'db_operations.php',
@@ -400,7 +400,7 @@ $type = '2';
                         if (result == 1) {
                             $('#learnings').bootstrapTable('refresh');
                         } else
-                            alert('Error! Learning could not be deleted');
+                            alert('Lỗi!! Chưa thể xóa.');
                     }
                 });
             }
@@ -495,14 +495,14 @@ $type = '2';
                     url: $(this).attr('action'),
                     data: formData,
                     beforeSend: function () {
-                        $('#submit_btn').html('Please wait..');
+                        $('#submit_btn').html('Xin chờ..');
                         $('#submit_btn').prop('disabled', true);
                     },
                     cache: false,
                     contentType: false,
                     processData: false,
                     success: function (result) {
-                        $('#submit_btn').html('Create Now');
+                        $('#submit_btn').html('Thêm Mới');
                         $('#result').html(result);
                         $('#result').show().delay(4000).fadeOut();
                         $('#register_form')[0].reset();
@@ -536,19 +536,19 @@ $type = '2';
                     url: $(this).attr('action'),
                     data: formData,
                     beforeSend: function () {
-                        $('#update_btn').html('Please wait..');
+                        $('#update_btn').html('Xin chờ..');
                     },
                     cache: false,
                     contentType: false,
                     processData: false,
                     success: function (result) {
                         $('#update_result').html(result);
-                        $('#update_result').show().delay(3000).fadeOut();
-                        $('#update_btn').html('Update');
+                        $('#update_result').show().delay(2000).fadeOut();
+                        $('#update_btn').html('Cập Nhật');
                         $('#learnings').bootstrapTable('refresh');
                         setTimeout(function () {
                             $('#editDataModal').modal('hide');
-                        }, 4000);
+                        }, 3000);
                     }
                 });
             }
@@ -564,19 +564,19 @@ $type = '2';
                     url: $(this).attr('action'),
                     data: formData,
                     beforeSend: function () {
-                        $('#update_status_btn').html('Please wait..');
+                        $('#update_status_btn').html('Xin chờ..');
                     },
                     cache: false,
                     contentType: false,
                     processData: false,
                     success: function (result) {
                         $('#update_status_result').html(result);
-                        $('#update_status_result').show().delay(3000).fadeOut();
-                        $('#update_status_btn').html('Update');
+                        $('#update_status_result').show().delay(2000).fadeOut();
+                        $('#update_status_btn').html('Cập Nhật');
                         $('#learnings').bootstrapTable('refresh');
                         setTimeout(function () {
                             $('#editStatusModal').modal('hide');
-                        }, 4000);
+                        }, 3000);
                     }
                 });
             }
@@ -598,9 +598,9 @@ $type = '2';
             });
             ids = ids.slice(0, -1); // removes last comma character
             if (ids == "") {
-                alert("Please select some learning to delete!");
+                alert("Chọn một số tiêu đề để xóa!");
             } else {
-                if (confirm("Are you sure you want to delete all selected learning?")) {
+                if (confirm("Bạn có muốn xóa tất cả tiêu đề được chọn?")) {
                     $.ajax({
                         type: 'GET',
                         url: "db_operations.php",
@@ -610,9 +610,9 @@ $type = '2';
                         },
                         success: function (result) {
                             if (result == 1) {
-                                alert("Learning deleted successfully");
+                                alert("Xóa Thành Công.");
                             } else {
-                                alert("Could not delete learning. Try again!");
+                                alert("Không thể xóa. Hãy thử lại!");
                             }
                             delete_button.html('<i class="fa fa-trash"></i>');
                             table.bootstrapTable('refresh');

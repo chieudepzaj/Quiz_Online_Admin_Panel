@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Home | <?= ucwords($_SESSION['company_name']) ?> </title>
+        <title>Trang chủ</title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -28,14 +28,14 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                     <div class="row">
                         <div role="main">
                             <!-- top tiles -->
-                            <h1 style="color:black;font-size:29px;text-align:center;">Welcome to <?= ucwords($_SESSION['company_name']) ?> - Admin Panel</h1>
+                            <h1 style="color:black;font-size:29px;text-align:center;">Xin chào! Bạn đã đăng nhập vào khu vực Quản trị của <?= ucwords($_SESSION['company_name']) ?> Online ! </h1>
                             <hr>
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="tile-stats">
                                     <div class="icon"><em class="fas fa-user-friends"></em>
                                     </div>
                                     <div class="count"><?= get_count('id', 'category', ''); ?></div>
-                                    <h3>Total Categories</h3>
+                                    <h3>Số Chủ Đề Chính</h3>
                                 </div>
                             </div>
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -43,7 +43,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                     <div class="icon"><em class="fas fa-users"></em>
                                     </div>
                                     <div class="count"><?= get_count('id', 'subcategory'); ?></div>
-                                    <h3>Total Sub Categories</h3>
+                                    <h3>Số Chủ Đề Phụ</h3>
                                 </div>
                             </div>
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -51,7 +51,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                     <div class="icon"><em class="far fa-question-circle"></em>
                                     </div>
                                     <div class="count"><?= get_count('id', 'question', ''); ?></div>
-                                    <h3>Total Questions</h3>
+                                    <h3>Tổng Số Câu Hỏi</h3>
                                 </div>
                             </div>
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -59,7 +59,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                     <div class="icon"><em class="fas fa-recycle"></em>
                                     </div>
                                     <div class="count"><?= get_count('id', 'users', ''); ?></div>
-                                    <h3>Registered Devices</h3>
+                                    <h3>Tổng Số Người Dùng</h3>
                                 </div>
                             </div>
                             <!-- /top tiles -->
@@ -105,7 +105,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 google.charts.setOnLoadCallback(drawChart);
                 function drawChart() {
                     var data = google.visualization.arrayToDataTable([
-                        ['Month', 'Participated'],
+                        ['Tháng', 'Người tham gia'],
                     <?php
                     foreach ($result as $row) {
                         echo "['" . $row['month_name'] . "'," . $row['month_wise_count'] . "],";
@@ -114,8 +114,8 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                     ]);
                     var options = {
                         chart: {
-                            title: 'Monthly Leaderboard',
-                            subtitle: 'Total Users Participated in Quiz Month Wise (Year: <?php echo date("Y"); ?>)',
+                            title: 'Bảng xếp hạng hàng tháng',
+                            subtitle: 'Tổng số người dùng đã tham gia câu hỏi theo tháng (Năm: <?php echo date("Y"); ?>)',
                         }
                     };
                     var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
@@ -126,7 +126,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                 google.charts.setOnLoadCallback(drawChart1);
                 function drawChart1() {
                     var data = google.visualization.arrayToDataTable([
-                        ['Month', 'Registered'],
+                        ['Tháng', 'Người dùng'],
                     <?php
                     foreach ($users as $row) {
                         echo "['" . $row['month_name_wise_user_count'] . "'," . $row['month_wise_user_count'] . "],";
@@ -135,8 +135,8 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                     ]);
                     var options = {
                         chart: {
-                            title: 'Monthly Registered Users',
-                            subtitle: 'Total Users Registered Month Wise (Year: <?php echo date("Y"); ?>)',
+                            title: 'Người dùng hàng tháng',
+                            subtitle: 'Tổng số người dùng ứng dụng theo tháng (Năm: <?php echo date("Y"); ?>)',
                         }
                     };
                     var chart = new google.charts.Bar(document.getElementById('columnchart_material_2'));

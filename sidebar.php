@@ -15,7 +15,7 @@
         if (isset($config['system_timezone_gmt']) && !empty($config['system_timezone_gmt'])) {
             $db->sql("SET `time_zone` = '" . $config['system_timezone_gmt'] . "'");
         } else {
-            $db->sql("SET `time_zone` = '+05:30'");
+            $db->sql("SET `time_zone` = '+07:00'");
         }
 
         function get_count($field, $table, $where = '') {
@@ -68,7 +68,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix text-center">                   
                     <div class="profile_info">
-                        <h2> <?= ucwords($_SESSION['company_name']) ?> Admin Panel</h2>
+                        <h2> Admin Dashboard </h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -77,80 +77,53 @@
                     <div class="menu_section">
 
                         <ul class="nav side-menu">
-                            <li><a href ="home.php"><em class="fas fa-home"></em> Home</a></li>
-                            <?php if (checkadmin($auth_username)) { ?>
-                                <li><a href ="users.php"><em class="fas fa-users"></em> Users</a></li>
+                            <li><a href ="home.php"><em class="fas fa-home"></em> Trang chủ</a></li>
+                                <li><a href ="users.php"><em class="fas fa-users"></em> Người dùng</a></li>
                                 <li>
-                                    <a><em class="fas fa-th"></em> Leaderboard<span class="fas fa-caret-down"></span></a>
+                                    <a><em class="fas fa-th"></em> Bảng xếp hạng<span class="fas fa-caret-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="global-leaderboard.php">All</a></li>
-                                        <li><a href="monthly-leaderboard.php">Monthly</a></li>
-                                        <li><a href="daily-leaderboard.php">Daily</a></li>                                       
+                                        <li><a href="global-leaderboard.php">Tổng</a></li>
+                                        <li><a href="monthly-leaderboard.php">Tháng</a></li>
+                                        <li><a href="daily-leaderboard.php">Ngày</a></li>                                       
                                     </ul>
                                 </li>                                   
                                 <?php if ($fn->is_language_mode_enabled()) { ?>
-                                    <li><a href="languages.php"><em class="fas fa-language"></em> Languages</a></li>
+                                    <li><a href="languages.php"><em class="fas fa-language"></em> Ngôn ngữ</a></li>
                                     <?php
                                 }
-                            }
                             ?>
                             <li>
                                 <a><em class="fas fa-book"></em> Quiz Zone<span class="fas fa-caret-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="main-category.php">Main Category</a></li>
-                                    <li><a href="sub-category.php">Sub Category</a></li>
-                                    <li><a href="category-order.php">Category Order</a></li>
-                                    <li><a href="questions.php">Questions</a></li>
+                                    <li><a href="main-category.php">Danh Mục</a></li>
+                                    <li><a href="sub-category.php">Danh Mục Con</a></li>
+                                    <li><a href="questions.php">Câu Hỏi</a></li>
                                 </ul>
                             </li>
                             <li><a href="daily-quiz.php"><em class="fas fa-question"></em> Daily Quiz</a></li>                          
                             <li>
-                                <a><em class="fas fa-book"></em> Learning Zone<span class="fas fa-caret-down"></span></a>
+                                <a><em class="fas fa-book"></em> Learning Zoom<span class="fas fa-caret-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="learning-category.php">Category</a></li>
-                                    <li><a href="learning-category-order.php">Category Order</a></li>
-                                    <li><a href="learning.php"> Manage Learning</a></li>
+                                    <li><a href="learning-category.php">Chủ Đề</a></li>
+                                    <li><a href="learning.php"> Quản Lý</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a><em class="fas fa-book-open"></em> Maths Quiz<span class="fas fa-caret-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="maths-category.php">Category</a></li>
-                                    <li><a href="maths-subcategory.php">Sub Category</a></li>
-                                    <li><a href="maths-category-order.php">Category Order</a></li>
-                                    <li><a href="maths-questions.php">Create Questions</a></li>
-                                    <li><a href="maths-questions-view.php">View Questions</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a><i class="fas fa-gift"></i> Contests<span class="fas fa-caret-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="contest.php"><i class="fas fa-gift"></i> Manage Contest</a></li>
-                                    <li><a href="contest-questions.php"><i class="fas fa-question-circle"></i> Manage Questions</a></li>
-                                    <li><a href="contest-questions-import.php"><i class="fas fa-upload"></i> Import Questions</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="question-reports.php"><em class="far fa-question-circle"></em> Question Reports</a></li>
-                            <?php if (checkadmin($auth_username)) { ?>
-                                <li><a href="send-notifications.php"><em class="fas fa-bullhorn"></em> Send Notifications</a></li>
-                            <?php } ?>
-                            <li><a href="import-questions.php"><em class="fas fa-upload"></em> Import Questions</a></li>
-                            <?php if (checkadmin($auth_username)) { ?>
-                                <li><a href="user-accounts-rights.php"><em class="fas fa-user"></em> User Accounts and Rights</a></li>
+                            <li><a href="question-reports.php"><em class="far fa-question-circle"></em> Báo Cáo Về Câu Hỏi</a></li>
+                            <li><a href="send-notifications.php"><em class="fas fa-bullhorn"></em> Gửi Thông Báo</a></li>
+                            <li><a href="import-questions.php"><em class="fas fa-upload"></em> Nhập Câu Hỏi</a></li>
+                           
                                 <li>
-                                    <a><em class="fas fa-cog"></em> Settings<span class="fas fa-caret-down"></span></a>
+                                    <a><em class="fas fa-cog"></em> Cài Đặt<span class="fas fa-caret-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="system-configurations.php">System Configurations</a></li>
-                                        <li><a href="notification-settings.php">Notification Settings</a></li>
-                                        <li><a href="about-us.php">About Us</a></li>
-                                        <li><a href="instructions.php">Instructions</a></li>
-                                        <li><a href="privacy-policy.php">Privacy Policy</a></li>
-                                        <li><a href="terms-conditions.php">Terms Conditions</a></li>    
-                                        <li><a href="web-firebase-settings.php">Web Firebase Settings</a></li>                                       
+                                        <!-- <li><a href="system-configurations.php">Cấu Hình Hệ Thống</a></li> -->
+                                        <li><a href="notification-settings.php">Cài Đặt Thông Báo</a></li>
+                                        <li><a href="about-us.php">Giới Thiệu</a></li>
+                                        <li><a href="privacy-policy.php">Chính Sách Bảo Mật</a></li>
+                                        <li><a href="terms-conditions.php">Điều Khoản Dịch Vụ</a></li>                                       
                                     </ul>
                                 </li>
-                                <li><a href="system-update.php"><em class="fas fa-cloud-download-alt"></em> System Update</a></li>
-                            <?php } ?>
+                            
+                        
                         </ul>
                     </div>
                 </div>
@@ -170,8 +143,8 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="password.php"><em class="fa fa-key pull-right"></em> Change Password</a></li>
-                                <li><a href="logout.php"><em class="fas fa-sign-out-alt pull-right"></em> Log Out</a></li>
+                                <li><a href="password.php"><em class="fa fa-key pull-right"></em> Đổi mật khẩu</a></li>
+                                <li><a href="logout.php"><em class="fas fa-sign-out-alt pull-right"></em> Đăng xuất</a></li>
                             </ul>
                         </li>
                     </ul>

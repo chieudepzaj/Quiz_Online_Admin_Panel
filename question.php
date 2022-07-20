@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Questions for Quiz | <?= ucwords($_SESSION['company_name']) ?> - Admin Panel </title>
+        <title>Quản Lý Câu Hỏi</title>
         <?php include 'include-css.php'; ?>
     </head>
     <body class="nav-md">
@@ -29,13 +29,13 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Questions for Quiz <small>Update Question</small></h2>
+                                    <h2>Quản Lý Câu Hỏi<small>Cập nhật câu hỏi</small></h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
                                     <div class="row">
                                         <form id="register_form" method="POST" action="db_operations.php" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="novalidate">
-                                            <h4 class="col-md-offset-1"><strong>Update a Question</strong></h4>
+                                            <h4 class="col-md-offset-1"><strong>Cập nhật một câu hỏi</strong></h4>
 
                                             <?php
                                             $res = "";
@@ -53,7 +53,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                             if ($fn->is_language_mode_enabled()) {
                                                 ?>
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="category">Language</label>
+                                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="category">Ngôn Ngữ</label>
                                                     <div class="col-md-10 col-sm-6 col-xs-12">
                                                         <?php
                                                         $sql = "SELECT * FROM `languages` ORDER BY id DESC";
@@ -61,7 +61,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                         $languages = $db->getResult();
                                                         ?>
                                                         <select id="language_id" name="language_id" required class="form-control col-md-7 col-xs-12">
-                                                            <option value="">Select language</option>
+                                                            <option value="">Chọn Ngôn Ngữ</option>
                                                             <?php foreach ($languages as $language) { ?>
                                                                 <?php if ($language['id'] == $res['language_id']) { ?>
                                                                     <option value='<?= $language['id'] ?>' selected><?= $language['language'] ?></option>
@@ -74,7 +74,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                 </div>
                                             <?php } ?>
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="category">Category</label>
+                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="category">Danh Mục</label>
                                                 <div class="col-md-4 col-sm-6 col-xs-12">
                                                     <?php
                                                     if ($fn->is_language_mode_enabled()) {
@@ -86,7 +86,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                     $categories = $db->getResult();
                                                     ?>
                                                     <select name='category' id='category' class='form-control' required>
-                                                        <option value=''>Select Main Category</option>
+                                                        <option value=''>Chọn Danh Mục</option>
                                                         <?php foreach ($categories as $row) { ?>
                                                             <?php if ($row['id'] == $res['category']) { ?>
                                                                 <option value='<?= $row['id'] ?>' selected><?= $row['category_name'] ?></option>
@@ -96,7 +96,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                         <?php } ?>
                                                     </select>
                                                 </div>
-                                                <label class="control-label col-md-2 col-sm-3 col-xs-12" for="subcategory">Sub Category</label>
+                                                <label class="control-label col-md-2 col-sm-3 col-xs-12" for="subcategory">Chủ Đề Phụ</label>
                                                 <div class="col-md-4 col-sm-6 col-xs-12">
                                                     <?php
                                                     $sql1 = "select id,`subcategory_name` from `subcategory` WHERE maincat_id='" . $res['category'] . "' order by id desc ";
@@ -104,7 +104,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                     $subcategories = $db->getResult();
                                                     ?>
                                                     <select name='subcategory' id='subcategory' class='form-control' >
-                                                        <option value=''>Select Sub Category</option>
+                                                        <option value=''>Chọn Chủ Đề Phụ</option>
                                                         <?php foreach ($subcategories as $srow) { ?>
                                                             <?php if ($srow['id'] == $res['subcategory']) { ?>
                                                                 <option value='<?= $srow['id'] ?>' selected><?= $srow['subcategory_name'] ?></option>
@@ -116,23 +116,23 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="question">Question</label>
+                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="question">Câu Hỏi</label>
                                                 <div class="col-md-10 col-sm-6 col-xs-12">
                                                     <textarea id="question" name="question" class="form-control col-md-7 col-xs-12" required><?= (!empty($res)) ? $res['question'] : '' ?></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="image">Image for Question <small>( if any )</small></label>
+                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="image">Ảnh Câu hỏi <small>(nếu có)</small></label>
                                                 <div class="col-md-10 col-sm-6 col-xs-12">
                                                     <input type="file" id="image" name="image" class="form-control col-md-7 col-xs-12" aria-required="true">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer type">Question Type</label>
+                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer type">Loại Câu Hỏi</label>
                                                 <div class="col-md-8 col-sm-6 col-xs-12">                                                     
                                                     <div id="status" class="btn-group">
                                                         <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                            <input type="radio" name="edit_question_type" value="1" <?= (!empty($res) && $res['question_type'] == '1') ? 'checked' : '' ?>> Options 
+                                                            <input type="radio" name="edit_question_type" value="1" <?= (!empty($res) && $res['question_type'] == '1') ? 'checked' : '' ?>> Lựa Chọn 
                                                         </label>
                                                         <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                                             <input type="radio" name="edit_question_type" value="2" <?= (!empty($res) && $res['question_type'] == '2') ? 'checked' : '' ?>> True / False
@@ -141,7 +141,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="a">Options</label>
+                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="a">Phương Án</label>
                                                 <div class="col-md-8 col-sm-6 col-xs-12"></div>
                                             </div>
                                             <div class="form-group">
@@ -183,10 +183,10 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer">Answer</label>
+                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="answer">Câu trả lời</label>
                                                 <div class="col-md-10 col-sm-6 col-xs-12">
                                                     <select name="answer" id="edit_answer" class="form-control" required>
-                                                        <option value="">Select Right Answer</option>
+                                                        <option value="">Chọn Đáp Án</option>
                                                         <option value="a" <?= (!empty($res) && ($res['answer'] == 'a' || $res['answer'] == 'A')) ? 'selected' : '' ?>>A</option>
                                                         <option value="b" <?= (!empty($res) && ($res['answer'] == 'b' || $res['answer'] == 'B')) ? 'selected' : '' ?>>B</option>
                                                         <option class='edit_ntf' value="c" <?= (!empty($res) && ($res['answer'] == 'c' || $res['answer'] == 'C')) ? 'selected' : '' ?>>C</option>
@@ -198,7 +198,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="note">Note</label>
+                                                <label class="control-label col-md-1 col-sm-3 col-xs-12" for="note">Ghi chú</label>
                                                 <div class="col-md-10 col-sm-6 col-xs-12">
                                                     <textarea name='note' id='note' class='form-control'><?= (!empty($res)) ? $res['note'] : '' ?></textarea>
                                                 </div>
@@ -206,7 +206,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                                             <div class="ln_solid"></div>
                                             <div class="form-group">
                                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-1">
-                                                    <button type="submit" id="update_btn" class="btn btn-success">Update Question</button>
+                                                    <button type="submit" id="update_btn" class="btn btn-success">Cập Nhật</button>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -296,7 +296,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                     url: "db_operations.php",
                     data: 'get_subcategories_of_category=1&category_id=' + category_id,
                     beforeSend: function () {
-                        $('#subcategory').html('Please wait..');
+                        $('#subcategory').html('Xin chờ..');
                     },
                     success: function (result) {
                         $('#subcategory').html(result);
@@ -335,7 +335,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         url: $(this).attr('action'),
                         data: formData,
                         beforeSend: function () {
-                            $('#submit_btn').html('Please wait..');
+                            $('#submit_btn').html('xin chờ..');
                             $('#submit_btn').prop('disabled', true);
                         },
                         cache: false,
@@ -343,8 +343,8 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                         processData: false,
                         success: function (result) {
                             $('#update_result').html(result);
-                            $('#update_result').show().delay(4000).fadeOut();
-                            $('#update_btn').html('Update Question');
+                            $('#update_result').show().delay(2000).fadeOut();
+                            $('#update_btn').html('Cập Nhật');
                             $('#category').val(category);
                             $('#subcategory').val(subcategory);
 <?php if ($fn->is_language_mode_enabled()) { ?>
@@ -355,7 +355,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username'])) {
                             $('#submit_btn').prop('disabled', false);
                             setTimeout(function () {
                                 window.location = 'question-reports.php';
-                            }, 4000);
+                            }, 1000);
                         }
                     });
                 }

@@ -11,7 +11,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Daily Quiz | <?= ucwords($_SESSION['company_name']) ?> - Admin Panel </title>
+        <title>Daily Quiz Manage</title>
         <?php include 'include-css.php'; ?>
         <style>
             #sortable-row li { margin-bottom:4px; padding:10px; background-color:#ededed;cursor:move;} 
@@ -30,7 +30,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Daily Quiz <small>Create New Quiz</small></h2>
+                                    <h2>Daily Quiz <small>Tạo daily quiz mới</small></h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">                                   
@@ -45,7 +45,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                                             ?>
                                             <div class='col-md-3'>
                                                 <select id='filter_language_id' class='form-control' required>
-                                                    <option value=''>Select Language</option>
+                                                    <option value=''>Chọn Ngôn Ngữ</option>
                                                     <?php foreach ($languages as $language) { ?>
                                                         <option value='<?= $language['id'] ?>'><?= $language['language'] ?></option>
                                                     <?php } ?>
@@ -59,7 +59,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                                             $res = $db->getResult();
                                             ?>
                                             <select id='filter_category' class='form-control' required>
-                                                <option value=''>Select Main Category</option>
+                                                <option value=''>Chọn Chủ Đề Chính</option>
                                                 <?php foreach ($res as $row) { ?>
                                                     <option value='<?= $row['id'] ?>'><?= $row['category_name'] ?></option>
                                                 <?php } ?>
@@ -67,23 +67,20 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                                         </div>
                                         <div class='col-md-3'>
                                             <select id='filter_subcategory' class='form-control' required>
-                                                <option value=''>Select Sub Category</option>
+                                                <option value=''>Chọn Chủ Đề Phụ</option>
                                             </select>
                                         </div>
                                         <div class='col-md-3'>
-                                            <button class='btn btn-primary btn-block' id='filter_btn'>Filter Questions</button>
+                                            <button class='btn btn-primary btn-block' id='filter_btn'>Lọc</button>
                                         </div>
                                     </div>
-                                    <div class='col-md-12'>
-                                        <hr>
-                                    </div>
-                                    <h2>Create New Quiz</h2>
+                            
                                     <div class='col-md-12'>
                                         <hr>
                                     </div>
                                     <div class='row'>
                                         <div class='col-md-6'>
-                                            <h4><strong>Select Questions for Daily Quiz</strong></h4>
+                                            <h4><strong>Chọn câu hỏi cho Daily Quiz</strong></h4>
                                             <table aria-describedby="mydesc" class='table-striped' id='questions'
                                                    data-toggle="table"
                                                    data-url="get-list.php?table=question"
@@ -91,7 +88,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                                                    data-side-pagination="server"
                                                    data-pagination="true"
                                                    data-page-list="[5, 10, 20, 50, 100, 200]"
-                                                   data-search="true" data-show-columns="true"
+                                                   data-search="true" data-show-columns="true" 
                                                    data-show-refresh="true" data-trim-on-search="false"
                                                    data-sort-name="id" data-sort-order="desc"
                                                    data-mobile-responsive="true"
@@ -108,19 +105,19 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                                                     <tr>
                                                         <th scope="col" data-field="state" data-checkbox="true"></th>
                                                         <th scope="col" data-field="id" data-sortable="true">ID</th>
-                                                        <th scope="col" data-field="category" data-sortable="true" data-visible='false'>Category</th>
-                                                        <th scope="col" data-field="subcategory" data-sortable="true" data-visible='false'>Sub Category</th>
-                                                        <th scope="col" data-field="question" data-sortable="true">Question</th>
+                                                        <th scope="col" data-field="category" data-sortable="true" data-visible='false'>Chủ Đề Chính</th>
+                                                        <th scope="col" data-field="subcategory" data-sortable="true" data-visible='false'>Chủ Đề Phụ</th>
+                                                        <th scope="col" data-field="question" data-sortable="true">Câu Hỏi</th>
                                                     </tr>
                                                 </thead>
                                             </table>
                                         </div>
                                         <div class="col-md-1">
-                                            <label class="control-label" for="add_question">Add</label>
+                                            <label class="control-label" for="add_question">Thêm</label>
                                             <a href="#" id="add_question" class="btn btn-success form-control"><i class="fa fa-chevron-circle-right"></i></a>
                                         </div>
                                         <div class='col-md-5'>
-                                            <h4><strong>Selected Questions</strong></h4>
+                                            <h4><strong>Câu Hỏi Được Chọn</strong></h4>
                                             <?php $db->sql("SET NAMES 'utf8'"); ?>
 
                                             <form id="daily_quiz_form" method="POST" action="db_operations.php" data-parsley-validate class="form-horizontal form-label-left">
@@ -133,7 +130,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                                                         $db->sql($sql);
                                                         $languages = $db->getResult();
                                                         ?>
-                                                        <label class="control-label " for="language">Language</label><br>
+                                                        <label class="control-label " for="language">Ngôn Ngữ</label><br>
                                                         <div class='row'>
                                                             <div class="col-md-12">
                                                                 <select id="language_id" name="language_id" required class="form-control">
@@ -146,7 +143,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                                                     <?php } else { ?>
                                                         <input type = "hidden" name="language_id" id="language_id" value="0" required/> 
                                                     <?php } ?>
-                                                    <label class="control-label" for="add_question">Title</label>
+                                                    <label class="control-label" for="add_question">Ngày</label>
 
                                                     <input type="date" id="daily_quiz_date" name="daily_quiz_date" value="<?= date('Y-m-d') ?>" class='form-control'/>
 
@@ -158,7 +155,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                                                     <div class="ln_solid"></div>
                                                     <div class="form-group">
                                                         <div class="col-md-12">
-                                                            <button type="submit" id="submit_btn" class="btn btn-success">Save</button>
+                                                            <button type="submit" id="submit_btn" class="btn btn-success">Lưu</button>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -203,7 +200,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                     url: "db_operations.php",
                     data: 'get_selected_date=1&selected_date=' + selected_date + '&language_id=' + language_id,
                     beforeSend: function () {
-                        $('#questions_block').block({message: '<img src="images/loading.gif"/><h4>Please wait  Loading.. .</h4>'});
+                        $('#questions_block').block({message: '<img src="images/loading.gif"/><h4>Xin Chờ...</h4>'});
                     },
                     success: function (response) {
                         var obj = JSON.parse(response);
@@ -229,7 +226,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                 var formData = new FormData(this);
 
                 if ($("#question_ids").val() == '') {
-                    alert('Please Select some questions and proceed ');
+                    alert('Chọn một số câu hỏi để thêm');
                     return false;
                 }
                 if ($("#daily_quiz_form").validate().form()) {
@@ -238,15 +235,15 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                         url: $(this).attr('action'),
                         data: formData,
                         beforeSend: function () {
-                            $('#submit_btn').html('Please wait..');
+                            $('#submit_btn').html('Xin Chờ..');
                         },
                         cache: false,
                         contentType: false,
                         processData: false,
                         success: function (result) {
                             $('#result').html(result);
-                            $('#result').show().delay(5000).fadeOut();
-                            $('#submit_btn').html('Save');
+                            $('#result').show().delay(1000).fadeOut();
+                            $('#submit_btn').html('Lưu');
                         }
                     });
                 }
@@ -321,7 +318,7 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                     url: "db_operations.php",
                     data: 'get_subcategories_of_category=1&category_id=' + category_id,
                     beforeSend: function () {
-                        $('#filter_subcategory').html('<option>Please wait..</option>');
+                        $('#filter_subcategory').html('<option>Xin chờ...</option>');
                     },
                     success: function (result) {
                         $('#filter_subcategory').html(result);
@@ -338,11 +335,11 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['username']))
                         url: "db_operations.php",
                         data: 'get_categories_of_language=1&language_id=' + language_id,
                         beforeSend: function () {
-                            $('#filter_category').html('<option>Please wait..</option>');
+                            $('#filter_category').html('<option>Xin chờ..</option>');
                         },
                         success: function (result) {
                             $('#filter_category').html(result);
-                            $('#filter_subcategory').html('<option>Select Sub Category</option>');
+                            $('#filter_subcategory').html('<option>Chọn Chủ Đề Phụ</option>');
                         }
                     });
                 });
